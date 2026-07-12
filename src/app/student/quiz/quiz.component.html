@@ -1,0 +1,81 @@
+<div class="quiz-container" *ngIf="quiz">
+
+<h2>{{quiz.title}}</h2>
+
+<div
+class="question-card"
+*ngFor="let q of quiz.questions">
+
+<h3>{{q.questionText}}</h3>
+
+<label>
+
+<input
+type="radio"
+[name]="'q' + q.id"
+[value]="q.optionA"
+(change)="choose(q.id,q.optionA)">
+
+{{q.optionA}}
+
+</label>
+
+<label>
+
+<input
+type="radio"
+[name]="'q' + q.id"
+[value]="q.optionB"
+(change)="choose(q.id,q.optionB)">
+{{q.optionB}}
+
+</label>
+
+<label>
+<input
+type="radio"
+[name]="'q' + q.id"
+[value]="q.optionC"
+(change)="choose(q.id,q.optionC)">
+
+{{q.optionC}}
+
+</label>
+
+<label>
+<input
+type="radio"
+[name]="'q' + q.id"
+[value]="q.optionD"
+(change)="choose(q.id,q.optionD)">
+
+{{q.optionD}}
+
+</label>
+
+</div>
+
+<button
+(click)="submitQuiz()">
+
+Submit Quiz
+
+</button>
+
+<h2>Your Score : {{ result.percentage }}%</h2>
+
+<div *ngIf="submitted && result">
+
+    <h2>Your Score : {{ result.percentage }}%</h2>
+
+    <div *ngIf="result.passed">
+        🎉 Congratulations! You Passed.
+    </div>
+
+    <div *ngIf="!result.passed">
+        ❌ You Failed. Watch the lesson again.
+    </div>
+
+</div>
+
+</div>

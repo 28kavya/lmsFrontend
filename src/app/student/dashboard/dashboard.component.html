@@ -1,0 +1,100 @@
+<div class="dashboard-container">
+
+  <!-- Welcome Card -->
+  <div class="welcome-card">
+    <div>
+      <h2>Welcome Back, {{ dashboard?.studentName }} 👋</h2>
+      <p>Continue learning and achieve your goals.</p>
+    </div>
+
+    <img src="assets/student.png" alt="Student">
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <div class="icon green">
+        <i class="bi bi-book-fill"></i>
+      </div>
+      <div>
+        <h3>{{ dashboard?.enrolledCourses }}</h3>
+        <p>Enrolled Courses</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon blue">
+        <i class="bi bi-play-circle-fill"></i>
+      </div>
+      <div>
+        <h3>{{ dashboard?.enrolledCourses }}</h3>
+        <p>Continue Learning</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon purple">
+        <i class="bi bi-award-fill"></i>
+      </div>
+      <div>
+        <h3>{{ dashboard?.certificates }}</h3>
+        <p>Certificates</p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon orange">
+        <i class="bi bi-graph-up-arrow"></i>
+      </div>
+      <div>
+        <h3>{{ dashboard?.overallProgress }}%</h3>
+        <p>Overall Progress</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Continue Learning -->
+  <div class="continue-learning">
+
+    <h2>Continue Learning</h2>
+
+    <div class="course-item" *ngFor="let course of courses">
+
+      <!-- Left Side -->
+      <div class="course-info">
+
+        <h3>{{ course.title }}</h3>
+
+        <p>{{ course.description }}</p>
+
+        <p class="progress-text">
+          {{ course.progress }}% Completed
+        </p>
+
+        <div class="progress">
+          <div
+            class="progress-bar"
+            [style.width.%]="course.progress">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Side -->
+      <div class="course-action">
+
+        <button
+          class="continue-btn"
+          (click)="continueLearning(course.courseId)">
+          Continue
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

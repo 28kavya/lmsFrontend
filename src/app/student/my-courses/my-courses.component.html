@@ -1,0 +1,58 @@
+<div class="my-courses">
+
+    <div class="header">
+        <h2>📚 My Courses</h2>
+        <p>Continue where you left off</p>
+    </div>
+
+    <div class="course-grid">
+
+        <div class="course-card" *ngFor="let course of courses">
+
+            <div class="card-header">
+
+                <span class="badge">Enrolled</span>
+
+                <div class="course-icon">
+                    {{ course.title.charAt(0) }}
+                </div>
+
+            </div>
+
+            <div class="card-content">
+
+                <h3>{{course.title}}</h3>
+
+                <p>
+                    {{course.description}}
+                </p>
+
+                <div class="stats">
+
+                    <span>{{course.progress}}%</span>
+
+                    <span>Completed</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill"
+                        [style.width.%]="course.progress">
+                    </div>
+
+                </div>
+
+                <button
+class="continue-btn"
+(click)="continueLearning(course.courseId)">
+▶ Continue Learning
+</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

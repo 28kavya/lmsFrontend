@@ -1,0 +1,43 @@
+<div class="lesson-container">
+
+    <h2>Course Lessons</h2>
+
+   <div class="lesson-card" *ngFor="let lesson of lessons">
+
+  <h2>{{lesson.title}}</h2>
+
+  <p>{{lesson.description}}</p>
+
+<button
+  class="watch-btn"
+  (click)="watchLesson(lesson)">
+  ▶ Watch Lesson
+</button>
+
+</div>
+
+<div class="video-player" *ngIf="selectedVideo">
+
+    <iframe
+        [src]="selectedVideo"
+        width="80%"
+        height="400"
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+  <button
+  class="complete-btn"
+  (click)="markCompleted()">
+  ✔ Mark Lesson Completed
+</button>
+
+<button
+  class="quiz-btn"
+  *ngIf="quizUnlocked"
+  (click)="startQuiz()">
+  Take Quiz
+</button>
+
+</div>
+
+</div>

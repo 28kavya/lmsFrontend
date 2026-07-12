@@ -1,0 +1,329 @@
+<div class="register-page">
+
+  <div class="container-fluid h-100">
+
+    <div class="row align-items-center">
+
+      <!-- ================= LEFT PANEL ================= -->
+
+      <div class="col-lg-6 left-panel d-none d-lg-flex">
+
+        <div class="content">
+
+          <span class="badge bg-primary px-4 py-2 fs-6 mb-4">
+            #Join LearnHub
+          </span>
+
+          <h1>Join LearnHub LMS</h1>
+
+          <h2>Start Your Learning Journey</h2>
+
+          <p>
+            Create your account and gain access to hundreds of premium
+            courses, expert instructors, quizzes, certifications and
+            career-focused learning resources.
+          </p>
+
+          <img
+            src="https://img.freepik.com/free-vector/online-certification-illustration_23-2148573637.jpg"
+            class="img-fluid hero-image"
+            alt="Register">
+
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT PANEL ================= -->
+
+      <div class="col-lg-6 right-panel">
+        <div class="register-card">
+
+          <div class="text-center mb-4">
+
+            <i class="bi bi-person-plus-fill logo-icon"></i>
+
+            <h2>Create Account</h2>
+
+            <p>Create your free LearnHub account.</p>
+
+          </div>
+
+          <form (ngSubmit)="register()">
+
+            <!-- First Row -->
+
+            <div class="row h-80 g-0 align-items-center">
+
+              <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                  First Name
+                </label>
+
+                <div class="input-group">
+
+                  <span class="input-group-text">
+
+                    <i class="bi bi-person-fill"></i>
+
+                  </span>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name"
+                    [(ngModel)]="firstName"
+                    name="firstName">
+
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                  Last Name
+                </label>
+                <div class="input-group">
+
+                  <span class="input-group-text">
+
+                    <i class="bi bi-person-fill"></i>
+
+                  </span>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name"
+                    [(ngModel)]="lastName"
+                    name="lastName">    
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+
+            <div class="mb-3">
+
+              <label class="form-label">
+
+                Email Address
+
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-envelope-fill"></i>
+
+                </span>
+
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter Email"
+                  [(ngModel)]="email"
+                  name="email">
+
+              </div>
+
+            </div>
+
+            <!-- Role -->
+
+            <div class="mb-3">
+
+              <label class="form-label">
+
+                Select Role
+
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-mortarboard-fill"></i>
+
+                </span>
+
+                <select
+                  class="form-select"
+                  [(ngModel)]="role"
+                  name="role">
+
+                  <option value="">
+                    Select Role
+                  </option>
+
+                  <option value="STUDENT">
+                    Student
+                  </option>
+
+                  <option value="INSTRUCTOR">
+                    Instructor
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- Password -->
+
+            <div class="mb-3">
+
+              <label class="form-label">
+
+                Password
+
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-lock-fill"></i>
+
+                </span>
+
+                <input
+                  [type]="showPassword ? 'text':'password'"
+                  class="form-control"
+                  placeholder="Create Password"
+                  [(ngModel)]="password"
+                  name="password">
+
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  (click)="togglePassword()">
+
+                  <i
+                    class="bi"
+                    [ngClass]="showPassword ? 'bi-eye-slash-fill':'bi-eye-fill'">
+                  </i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+            <!-- Confirm Password -->
+
+            <div class="mb-3">
+
+              <label class="form-label">
+
+                Confirm Password
+
+              </label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-shield-lock-fill"></i>
+
+                </span>
+
+                <input
+                  [type]="showConfirmPassword ? 'text':'password'"
+                  class="form-control"
+                  placeholder="Confirm Password"
+                  [(ngModel)]="confirmPassword"
+                  name="confirmPassword">
+
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  (click)="toggleConfirmPassword()">
+
+                  <i
+                    class="bi"
+                    [ngClass]="showConfirmPassword ? 'bi-eye-slash-fill':'bi-eye-fill'">
+                  </i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+            <!-- Terms -->
+
+            <div class="form-check mb-4">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="terms">
+
+              <label
+                class="form-check-label"
+                for="terms">
+
+                I agree to the
+                <a href="#">Terms & Conditions</a>
+                and
+                <a href="#">Privacy Policy</a>
+
+              </label>
+
+            </div>
+
+            <!-- Register -->
+
+            <button
+              class="btn register-btn w-100"
+              type="submit">
+
+              Create Account
+
+            </button>
+
+          </form>
+
+          <!-- Divider -->
+
+          <div class="divider">
+
+            <span>OR</span>
+
+          </div>
+
+          <!-- Google -->
+
+          <button class="btn google-btn w-100">
+
+            <i class="bi bi-google me-2"></i>
+
+            Continue with Google
+
+          </button>
+
+          <!-- Login -->
+
+          <div class="text-center mt-4">
+
+            Already have an account?
+
+            <a routerLink="/login">
+
+              Login
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

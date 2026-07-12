@@ -1,0 +1,159 @@
+<div class="login-page">
+
+  <div class="container-fluid h-100">
+
+    <div class="row h-100 g-0">
+
+      <!-- LEFT SIDE -->
+
+      <div class="col-lg-6 left-panel d-none d-lg-flex">
+
+        <div class="content">
+
+          <h1>LearnHub LMS</h1>
+
+          <h2>Learn Without Limits</h2>
+
+          <p>
+            Upgrade your skills with industry experts,
+            interactive lessons, quizzes and certifications.
+          </p>
+
+          <img
+            src="https://img.freepik.com/free-vector/online-certification-illustration_23-2148573637.jpg"
+            class="hero-image img-fluid"
+            alt="Learning">
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+
+      <div class="col-lg-6 right-panel">
+
+        <div class="login-card">
+
+          <div class="text-center mb-4">
+
+            <i class="bi bi-mortarboard-fill logo-icon"></i>
+
+            <h2>Welcome Back</h2>
+
+            <p>Login to continue learning.</p>
+
+          </div>
+
+          <form>
+
+            <div class="mb-3">
+
+              <label class="form-label">Email Address</label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-envelope-fill"></i>
+
+                </span>
+
+               <input
+  type="email"
+  class="form-control"
+  placeholder="Enter your email"
+  [(ngModel)]="email"
+  name="email">
+
+              </div>
+
+            </div>
+
+            <div class="mb-3">
+
+              <label class="form-label">Password</label>
+
+              <div class="input-group">
+
+                <span class="input-group-text">
+
+                  <i class="bi bi-lock-fill"></i>
+
+                </span>
+
+             <input
+  type="password"
+  class="form-control"
+  placeholder="Enter password"
+  [(ngModel)]="password"
+  name="password">
+
+                <button class="btn btn-light" type="button">
+
+                  <i class="bi bi-eye-fill"></i>
+
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-between mb-4">
+
+              <div class="form-check">
+
+                <input class="form-check-input" type="checkbox">
+
+                <label class="form-check-label">
+                  Remember Me
+                </label>
+
+              </div>
+
+              <a href="#" class="forgot">
+                Forgot Password?
+              </a>
+
+            </div>
+<button
+type="button"
+class="btn login-btn w-100"
+(click)="login()">
+Login
+</button>
+
+          </form>
+
+          <div class="divider">
+
+            <span>OR</span>
+
+          </div>
+
+          <button class="btn google-btn w-100">
+
+            <i class="bi bi-google"></i>
+
+            Continue with Google
+
+          </button>
+
+          <div class="text-center mt-4">
+
+            Don't have an account?
+
+            <a routerLink="/register">
+              Register
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
