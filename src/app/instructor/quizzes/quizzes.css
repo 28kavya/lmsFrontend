@@ -1,0 +1,61 @@
+body{
+
+    background:#f5f7fb;
+
+}
+
+.card{
+
+    border-radius:15px;
+
+}
+
+.quiz-card{
+
+    border-left:6px solid #e27107;
+    transition:.3s;
+
+}
+
+.quiz-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.card-header{
+
+    border-radius:15px 15px 0 0 !important;
+
+}
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+
+}
+
+.btn{
+
+    border-radius:10px;
+
+}
+
+.list-group-item{
+
+    border:none;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.badge{
+
+    font-size:15px;
+
+    padding:8px 14px;
+
+}

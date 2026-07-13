@@ -1,0 +1,248 @@
+<div class="settings-container">
+
+    <!-- Cover Banner -->
+
+    <div class="cover-banner"></div>
+
+    <!-- Profile -->
+
+    <div class="profile-section">
+
+        <img src="https://i.pravatar.cc/180?img=12"
+             alt="Instructor"
+             class="profile-image">
+
+        <h2>David Johnson</h2>
+
+        <p>Senior Java Instructor</p>
+
+    </div>
+
+    <!-- Two Cards -->
+
+    <div class="info-grid">
+
+        <!-- Basic Information -->
+
+        <div class="info-card">
+
+            <h3>Basic Information</h3>
+
+            <div class="info-row">
+
+                <label>Full Name</label>
+
+                <input
+                type="text"
+                [(ngModel)]="fullName">
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Email</label>
+
+                <input
+                type="email"
+                [(ngModel)]="email">
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Phone</label>
+
+                <input
+                type="text"
+                [(ngModel)]="phone">
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Experience</label>
+
+                <input
+                type="text"
+                [(ngModel)]="experience">
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Bio</label>
+
+                <textarea
+                rows="4"
+                [(ngModel)]="bio"></textarea>
+
+            </div>
+
+        </div>
+
+        <!-- System Settings -->
+
+        <div class="info-card">
+
+            <h3>System Settings</h3>
+
+            <div class="info-row">
+
+                <label>Language</label>
+
+                <select [(ngModel)]="language">
+
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Telugu</option>
+
+                </select>
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Time Zone</label>
+
+                <select [(ngModel)]="timezone">
+
+                    <option>Asia/Kolkata</option>
+                    <option>UTC</option>
+                    <option>US/Eastern</option>
+
+                </select>
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Dark Mode</label>
+
+                <label class="switch">
+
+                    <input
+                    type="checkbox"
+                    [(ngModel)]="darkMode">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="info-row">
+
+                <label>Privacy</label>
+
+                <select>
+
+                    <option>Only Students</option>
+
+                    <option>Everyone</option>
+
+                    <option>Only Me</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Security -->
+
+        
+    </div>
+
+    <!-- Notifications -->
+
+    <div class="section-card">
+
+        <h3>Notification Preferences</h3>
+
+        <div class="toggle-item">
+
+            <span>Email Notifications</span>
+
+            <label class="switch">
+
+                <input
+                type="checkbox"
+                checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="toggle-item">
+
+            <span>Student Enrollment Alerts</span>
+
+            <label class="switch">
+
+                <input
+                type="checkbox"
+                checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="toggle-item">
+
+            <span>Quiz Submission Notifications</span>
+
+            <label class="switch">
+
+                <input
+                type="checkbox"
+                checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <div class="toggle-item">
+
+            <span>Live Class Reminders</span>
+
+            <label class="switch">
+
+                <input
+                type="checkbox"
+                checked>
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="button-area">
+<button
+  class="save-btn"
+  (click)="saveChanges()">
+  Save Changes
+</button>
+
+        <button
+        class="logout-btn"
+        (click)="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+

@@ -1,0 +1,66 @@
+.search-box{
+
+    height:50px;
+
+    border-radius:30px;
+
+    font-size:18px;
+
+    padding-left:20px;
+
+}
+
+.card{
+
+    border-radius:15px;
+
+}
+
+.card-body h3{
+
+    color:#e27107;
+
+    font-weight:bold;
+
+}
+.card ::shadow
+{
+    color:#e27107;
+}
+.card-body p{
+
+    margin-top:10px;
+
+    font-weight:600;
+
+}
+
+.table{
+
+    vertical-align:middle;
+
+}
+
+.progress{
+
+    height:20px;
+
+    border-radius:10px;
+
+}
+
+.progress-bar{
+
+    font-size:12px;
+
+}
+
+.badge{
+
+    font-size:14px;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+}

@@ -15,6 +15,10 @@ import { Courses } from './admin/courses/courses';
 import { Students } from './admin/students/students';
 import { Instructors } from './admin/instructors/instructors';
 import { Settings } from './admin/settings/settings';
+import { Instructor } from './instructor/instructor';
+import { Quizzes } from './instructor/quizzes/quizzes';
+import { LessonsComponent } from './instructor/create-course/lessons';
+import { Analytics } from './instructor/analytics/analytics';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -58,86 +62,134 @@ export const routes: Routes = [
 // pathMatch:'full'
 // }]
 //     }
-{
-  path: 'admin',
-  component: AdminLayout,
-  children: [
+// {
+//   path: 'admin',
+//   component: AdminLayout,
+//   children: [
 
-    {
-      path: 'dashboard',
-      component: Dashboard
-    },
+//     {
+//       path: 'dashboard',
+//       component: Dashboard
+//     },
 
-    // ================= Courses =================
+//     // ================= Courses =================
 
-    {
-      path: 'courses',
-      component: Courses
-    },
+//     {
+//       path: 'courses',
+//       component: Courses
+//     },
 
-    {
-      path: 'courses/add',
-      loadComponent: () =>
-        import('./admin/courses/add-course/add-course')
-          .then(m => m.AddCourse)
-    },
+//     {
+//       path: 'courses/add',
+//       loadComponent: () =>
+//         import('./admin/courses/add-course/add-course')
+//           .then(m => m.AddCourse)
+//     },
 
-    {
-      path: 'courses/edit',
-      loadComponent: () =>
-        import('./admin/courses/edit-course/edit-course')
-          .then(m => m.EditCourse)
-    },
+//     {
+//       path: 'courses/edit',
+//       loadComponent: () =>
+//         import('./admin/courses/edit-course/edit-course')
+//           .then(m => m.EditCourse)
+//     },
 
-    // ================= Students =================
+//     // ================= Students =================
 
-    {
-      path: 'students',
-      component: Students
-    },
+//     {
+//       path: 'students',
+//       component: Students
+//     },
 
-    {
-      path: 'students/add',
-      loadComponent: () =>
-        import('./admin/students/add-student/add-student')
-          .then(m => m.AddStudent)
-    },
+//     {
+//       path: 'students/add',
+//       loadComponent: () =>
+//         import('./admin/students/add-student/add-student')
+//           .then(m => m.AddStudent)
+//     },
 
-    {
-      path: 'students/edit/:id',
-      loadComponent: () =>
-        import('./admin/students/edit-student/edit-student')
-          .then(m => m.EditStudent)
-    },
+//     {
+//       path: 'students/edit/:id',
+//       loadComponent: () =>
+//         import('./admin/students/edit-student/edit-student')
+//           .then(m => m.EditStudent)
+//     },
 
-    // ================= Instructors =================
+//     // ================= Instructors =================
 
-    {
-      path: 'instructors',
-      component: Instructors
-    },
+//     {
+//       path: 'instructors',
+//       component: Instructors
+//     },
 
-    {
-      path: 'instructors/add',
-      loadComponent: () =>
-        import('./admin/instructors/add-instructor/add-instructor')
-          .then(m => m.AddInstructor)
-    },
+//     {
+//       path: 'instructors/add',
+//       loadComponent: () =>
+//         import('./admin/instructors/add-instructor/add-instructor')
+//           .then(m => m.AddInstructor)
+//     },
 
-    {
-      path: 'instructors/edit/:id',
-      loadComponent: () =>
-        import('./admin/instructors/edit-instructor/edit-instructor')
-          .then(m => m.EditInstructor)
-    },
+//     {
+//       path: 'instructors/edit/:id',
+//       loadComponent: () =>
+//         import('./admin/instructors/edit-instructor/edit-instructor')
+//           .then(m => m.EditInstructor)
+//     },
 
-    // ================= Settings =================
+//     // ================= Settings =================
 
-    {
-      path: 'settings',
-      component: Settings
-    }
+//     {
+//       path: 'settings',
+//       component: Settings
+//     }
 
-  ]
-}
+//   ]
+// }
+
+  {
+    path: 'instructor',
+    component: Instructor,
+    children: [
+      {
+        path: '', component: Dashboard
+      },
+      {
+        path: 'dashboard',
+        component: Dashboard
+      },
+       {
+        path: 'quizzesdir',
+        component: Quizzes
+      },
+      {
+        path: 'create-course',
+        component: LessonsComponent
+      },
+      {
+        path: 'students',
+        component: Students
+      },
+       {
+        path: 'quizzes',
+        component: Quizzes
+      },
+    
+       {
+        path: 'analytics',
+        component:Analytics
+      },
+      {
+        path: 'settings',
+        component:Settings
+      },
+      {
+        path: 'quiz',
+        component: Quizzes
+      },
+    ]
+  },
+  // Optional - any unknown URL goes to login
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
