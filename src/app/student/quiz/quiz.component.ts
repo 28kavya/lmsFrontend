@@ -64,28 +64,28 @@ result: QuizResult = {
 
   }
 
-  submitQuiz(): void {
+//   submitQuiz(): void {
 
-    this.service.submitQuiz(
-      this.quiz.id,
-      this.answers
-    ).subscribe({
+//     this.service.submitQuiz(
+//       this.quiz.id,
+//       this.answers
+//     ).subscribe({
 
-   next: (res: QuizResult) => {
+//    next: (res: QuizResult) => {
 
-  this.result = res;
-  this.submitted = true;
+//   this.result = res;
+//   this.submitted = true;
 
-},
+// },
 
-      error: (err) => {
+//       error: (err) => {
 
-        console.error(err);
+//         console.error(err);
 
-      }
+//       }
 
-    });
+//     });
 
-  }
+//   }
 
 }
