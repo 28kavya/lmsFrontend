@@ -1,0 +1,344 @@
+<div class="student-page">
+
+  <!-- ================= Header ================= -->
+
+  <div class="page-header">
+
+    <div>
+      <h2>Student Management</h2>
+      <p class="text-muted">
+        Dashboard /
+        <span class="fw-semibold">Students</span>
+      </p>
+    </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="addStudent()">
+
+      <i class="bi bi-plus-circle-fill me-2"></i>
+
+      Add Student
+
+    </button>
+
+  </div>
+
+  <!-- ================= Statistics ================= -->
+
+  <div class="row g-4 mb-4">
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Total Students</h6>
+
+          <h2>{{ totalStudents }}</h2>
+
+          <small>
+            Registered Students
+          </small>
+
+        </div>
+
+        <div class="stat-icon blue">
+
+          <i class="bi bi-people-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Active Students</h6>
+
+          <h2>{{ activeStudents }}</h2>
+
+          <small>
+            Currently Learning
+          </small>
+
+        </div>
+
+        <div class="stat-icon green">
+
+          <i class="bi bi-person-check-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Completed</h6>
+
+          <h2>1520</h2>
+
+          <small>
+            Certificates Earned
+          </small>
+
+        </div>
+
+        <div class="stat-icon orange">
+
+          <i class="bi bi-award-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Revenue</h6>
+
+          <h2>₹9.5L</h2>
+
+          <small>
+            Total Fees
+          </small>
+
+        </div>
+
+        <div class="stat-icon red">
+
+          <i class="bi bi-currency-rupee"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= Student Table ================= -->
+
+  <div class="card">
+
+    <div class="card-body">
+
+      <!-- Search -->
+
+      <div class="row mb-4">
+
+        <div class="col-md-8">
+
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search Student..."
+            [(ngModel)]="searchText">
+
+        </div>
+
+        <div class="col-md-4">
+
+          <select class="form-select">
+
+            <option>All Courses</option>
+
+            <option>Java Full Stack</option>
+
+            <option>Angular</option>
+
+            <option>Spring Boot</option>
+
+            <option>MySQL</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <!-- Table -->
+
+      <div class="table-responsive">
+
+        <table class="table align-middle">
+
+          <thead>
+
+            <tr>
+
+              <th>Student</th>
+
+              <th>Email</th>
+
+              <th>Course</th>
+
+              <th>Phone</th>
+
+              <th>Status</th>
+
+              <th class="text-center">
+                Actions
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let student of filteredStudents">
+                <td>
+
+  <div class="student-info">
+
+    <img [src]="student.image" alt="Student">
+
+    <div>
+
+      <h6>{{ student.name }}</h6>
+
+      <small>ID : ST{{ student.id }}</small>
+
+    </div>
+
+  </div>
+
+</td>
+
+<td>
+  {{ student.email }}
+</td>
+
+<td>
+  {{ student.course }}
+</td>
+
+<td>
+  {{ student.phone }}
+</td>
+
+<td>
+
+  <span
+    class="status"
+    [ngClass]="{
+      'active': student.status === 'Active',
+      'completed': student.status === 'Completed'
+    }">
+
+    {{ student.status }}
+
+  </span>
+
+</td>
+
+<td>
+
+  <div class="action-buttons">
+
+    <!-- View -->
+
+    <button
+      class="btn btn-info btn-sm me-2">
+
+      <i class="bi bi-eye-fill"></i>
+
+    </button>
+
+    <!-- Edit -->
+
+    <button
+      class="btn btn-warning btn-sm me-2"
+      (click)="editStudent(student)">
+
+      <i class="bi bi-pencil-fill"></i>
+
+    </button>
+
+    <!-- Delete -->
+
+    <button
+      class="btn btn-danger btn-sm"
+      (click)="deleteStudent(student.id)">
+
+      <i class="bi bi-trash-fill"></i>
+
+    </button>
+
+  </div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- Pagination -->
+
+<div class="d-flex justify-content-between align-items-center mt-4">
+
+  <p class="text-muted mb-0">
+
+    Showing
+
+    {{ filteredStudents.length }}
+
+    of
+
+    {{ students.length }}
+
+    Students
+
+  </p>
+
+  <ul class="pagination mb-0">
+
+    <li class="page-item disabled">
+      <a class="page-link">
+        Previous
+      </a>
+    </li>
+
+    <li class="page-item active">
+      <a class="page-link">
+        1
+      </a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link">
+        Next
+      </a>
+    </li>
+
+  </ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

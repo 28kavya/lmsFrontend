@@ -1,0 +1,107 @@
+/* ===========================
+   Add Student Page
+=========================== */
+
+.add-student-page {
+    padding: 30px;
+    background: #f4f7fb;
+    min-height: 100vh;
+}
+
+/* Header */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-size:30px;
+    font-weight:700;
+    color:#2c3e50;
+}
+
+.page-header p{
+    color:#6c757d;
+    margin-top:5px;
+}
+
+/* Card */
+
+.form-card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.card-body{
+    padding:35px;
+}
+
+/* Labels */
+
+.form-label{
+    font-weight:600;
+    margin-bottom:8px;
+    color:#34495e;
+}
+
+/* Inputs */
+
+.form-control,
+.form-select{
+
+    height:48px;
+
+    border-radius:10px;
+
+    border:1px solid #dcdfe6;
+
+    transition:.3s;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
+
+}
+
+/* Button */
+
+.btn-primary{
+
+    border-radius:10px;
+
+    padding:12px 35px;
+
+    font-weight:600;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.page-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.card-body{
+
+padding:20px;
+
+}
+
+}

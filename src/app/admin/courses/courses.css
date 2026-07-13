@@ -1,0 +1,630 @@
+/* ==========================================
+   COURSE PAGE
+========================================== */
+
+.courses-page{
+    width:100%;
+    padding:30px;
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    font-family:'Poppins',sans-serif;
+    background:#f4f7fc;
+    overflow-x:hidden;
+}
+
+
+/* =======.===================================
+   SIDEBAR
+========================================== */
+
+.sidebar{
+    width:270px;
+    background:#1b1f45;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    overflow-y:auto;
+    box-shadow:5px 0 25px rgba(0,0,0,.08);
+    z-index:1000;
+}
+
+/* Logo */
+
+.logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    padding:30px 20px;
+    font-size:28px;
+    font-weight:700;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo i{
+    color:#6C63FF;
+    font-size:34px;
+}
+
+/* Menu */
+
+.menu{
+    list-style:none;
+    padding:25px 0;
+    margin:0;
+}
+
+.menu li{
+    margin:8px 18px;
+}
+
+.menu li a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    text-decoration:none;
+    color:#d8d8d8;
+    padding:14px 18px;
+    border-radius:14px;
+    transition:.35s;
+    font-size:16px;
+    font-weight:500;
+}
+
+.menu li a i{
+    font-size:20px;
+}
+
+.menu li a:hover{
+    background:#6C63FF;
+    color:#fff;
+    transform:translateX(6px);
+}
+
+.menu li.active a{
+    background:#6C63FF;
+    color:#fff;
+    box-shadow:0 8px 25px rgba(108,99,255,.35);
+}
+
+/* Logout */
+
+.logout{
+    padding:25px;
+}
+
+.logout button{
+    border-radius:12px;
+    height:48px;
+    font-weight:600;
+}
+
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h2{
+    font-size:30px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.page-header p{
+    color:#6c757d;
+}
+
+.add-course-btn{
+    background:#6C63FF;
+    border:none;
+    border-radius:12px;
+    padding:12px 22px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.add-course-btn:hover{
+    background:#5648e5;
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   STATISTICS CARDS
+========================================== */
+
+.course-stat-card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.course-stat-card h6{
+    color:#777;
+    margin-bottom:8px;
+}
+
+.course-stat-card h2{
+    font-size:32px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.course-stat-card small{
+    color:#28a745;
+    font-weight:600;
+}
+
+.stat-icon{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:30px;
+}
+
+.total-course .stat-icon{
+    background:#4f46e5;
+}
+
+.active-course .stat-icon{
+    background:#22c55e;
+}
+
+.students-course .stat-icon{
+    background:#f59e0b;
+}
+
+.revenue-course .stat-icon{
+    background:#ef4444;
+}
+/* ==========================================
+   TABLE CARD
+========================================== */
+
+.course-table-card{
+    border:none;
+    border-radius:20px;
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+}
+
+.course-table-card .card-body{
+    padding:28px;
+}
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+.search-box{
+    display:flex;
+    align-items:center;
+    background:#f4f6fb;
+    border-radius:12px;
+    padding:0 15px;
+    height:52px;
+}
+
+.search-box i{
+    color:#6C63FF;
+    font-size:18px;
+}
+
+.search-box input{
+    border:none;
+    background:transparent;
+    margin-left:10px;
+    width:100%;
+    outline:none;
+    box-shadow:none;
+}
+
+.form-select{
+    height:52px;
+    border-radius:12px;
+    border:1px solid #dee2e6;
+}
+
+.form-select:focus{
+    border-color:#6C63FF;
+    box-shadow:none;
+}
+
+/* ==========================================
+   TABLE HEADER
+========================================== */
+
+.table thead{
+    background:#f7f8fd;
+}
+
+.table thead th{
+    border:none;
+    padding:18px;
+    color:#555;
+    font-size:15px;
+    font-weight:700;
+}
+
+.table tbody td{
+    padding:18px;
+    vertical-align:middle;
+}
+/* ==========================================
+   COURSE INFO
+========================================== */
+
+.course-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.course-info img{
+    width:70px;
+    height:70px;
+    border-radius:15px;
+    object-fit:cover;
+    border:3px solid #eef2ff;
+    transition:.3s;
+}
+
+.course-info img:hover{
+    transform:scale(1.08);
+}
+
+.course-info h6{
+    margin-bottom:6px;
+    font-size:17px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.course-info small{
+    color:#777;
+    font-size:13px;
+}
+
+/* ==========================================
+   CATEGORY BADGES
+========================================== */
+
+.category{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.programming{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.web{
+    background:#e8fff3;
+    color:#16a34a;
+}
+
+.database{
+    background:#fff4e6;
+    color:#f59e0b;
+}
+
+.cloud{
+    background:#e6f7ff;
+    color:#0284c7;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.status{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.status.active{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.status.draft{
+    background:#fef3c7;
+    color:#ca8a04;
+}
+
+.status.archived{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.price{
+    font-size:18px;
+    font-weight:700;
+    color:#6C63FF;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.table .btn{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    border:none;
+    transition:.3s;
+}
+
+.btn-info{
+    background:#e0f2fe;
+    color:#0284c7;
+}
+
+.btn-warning{
+    background:#fef3c7;
+    color:#ca8a04;
+}
+.table .btn-danger{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.btn-info:hover{
+    background:#0284c7;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.btn-warning:hover{
+    background:#ca8a04;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.btn-danger:hover{
+    background:#dc2626;
+    color:#fff;
+    transform:translateY(-2px);
+}
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.pagination .page-link{
+    border:none;
+    margin:0 4px;
+    border-radius:10px;
+    color:#6C63FF;
+    font-weight:600;
+    padding:10px 16px;
+    transition:.3s;
+}
+
+.pagination .page-item.active .page-link{
+    background:#6C63FF;
+    color:#fff;
+}
+
+.pagination .page-link:hover{
+    background:#6C63FF;
+    color:#fff;
+}
+
+.pagination .page-item.disabled .page-link{
+    background:#f5f5f5;
+    color:#999;
+}
+
+/* ==========================================
+   TABLE ANIMATION
+========================================== */
+
+.table tbody tr{
+    transition:.3s;
+}
+
+.table tbody tr:hover{
+    background:#f8f9ff;
+    transform:scale(1.005);
+}
+
+/* ==========================================
+   CARD HOVER
+========================================== */
+.course-table-card{
+    transition:.35s;
+}
+
+.course-stat-card:hover,
+.course-table-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eef2f7;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6C63FF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#5145d8;
+}
+.action-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.action-buttons .btn{
+    width:38px;
+    height:38px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px;
+}
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.page-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.add-course-btn{
+    width:100%;
+}
+
+.course-stat-card{
+    margin-bottom:20px;
+}
+
+.search-box{
+    margin-bottom:15px;
+}
+
+}
+
+@media(max-width:768px){
+
+.courses-page{
+    padding:15px;
+}
+
+.page-header h2{
+    font-size:24px;
+}
+
+.course-info{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.course-info img{
+    width:60px;
+    height:60px;
+}
+
+.table{
+    font-size:13px;
+}
+
+.table td,
+.table th{
+    white-space:nowrap;
+}
+
+.pagination{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+}
+@media(max-width:576px){
+
+    .course-stat-card{
+        flex-direction:column;
+        text-align:center;
+        gap:15px;
+    }
+
+    .stat-icon{
+        margin:auto;
+    }
+
+    .page-header{
+        text-align:center;
+        gap:15px;
+    }
+
+    .page-header h2{
+        font-size:22px;
+    }
+
+    .page-header p{
+        font-size:14px;
+    }
+
+    .add-course-btn{
+        width:100%;
+    }
+
+    .course-info{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .course-info img{
+        width:55px;
+        height:55px;
+    }
+
+    .table-responsive{
+        overflow-x:auto;
+    }
+
+    .pagination{
+        justify-content:center;
+    }
+
+}

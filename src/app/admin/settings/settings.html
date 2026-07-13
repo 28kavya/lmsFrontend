@@ -1,0 +1,101 @@
+<div class="settings-page">
+
+    <div class="page-header">
+
+        <div>
+            <h2>Settings</h2>
+            <p>Dashboard / <span>Settings</span></p>
+        </div>
+
+    </div>
+
+    <div class="card settings-card">
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Website Name</label>
+
+                    <input
+                    class="form-control"
+                    [(ngModel)]="siteName">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Admin Email</label>
+
+                    <input
+                    class="form-control"
+                    [(ngModel)]="email">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Phone Number</label>
+
+                    <input
+                    class="form-control"
+                    [(ngModel)]="phone">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Language</label>
+
+                    <select class="form-select">
+
+                        <option>English</option>
+                        <option>Tamil</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Theme</label>
+
+                    <select class="form-select">
+
+                        <option>Light</option>
+                        <option>Dark</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">Timezone</label>
+
+                    <select class="form-select">
+
+                        <option>Asia/Kolkata</option>
+                        <option>UTC</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+            class="btn btn-primary"
+            (click)="save()">
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

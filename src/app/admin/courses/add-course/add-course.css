@@ -1,0 +1,71 @@
+.add-course-page{
+    padding:30px;
+}
+
+.page-header{
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    color: white;
+    padding: 40px;
+    border-radius: 22px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(79,70,229,.25);
+}
+
+.page-header h1{
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.page-header p{
+    color: rgba(255,255,255,.9);
+    font-size:16px;
+}
+.course-form-card{
+    background:#fff;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+    border-top:6px solid #6C63FF;
+}
+
+.card-body{
+    padding:35px;
+}
+
+.form-label{
+    font-weight:600;
+    color:#333;
+    margin-bottom:8px;
+}
+
+.form-control,
+.form-select{
+    height:52px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    font-size:15px;
+}
+
+textarea.form-control{
+    height:auto;
+    resize:none;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#6C63FF;
+    box-shadow:0 0 0 .2rem rgba(108,99,255,.15);
+}
+
+.btn-primary{
+    background:#6C63FF;
+    border:none;
+    border-radius:12px;
+    padding:12px 30px;
+    font-weight:600;
+}
+
+.btn-primary:hover{
+    background:#5548e6;
+}
