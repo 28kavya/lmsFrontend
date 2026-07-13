@@ -1,0 +1,223 @@
+<div class="courses-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h2>Course Management</h2>
+      <p class="text-muted mb-0">
+        Dashboard / <span class="fw-semibold">Courses</span>
+      </p>
+    </div>
+
+    <button class="btn btn-primary add-course-btn" (click)="addCourse()">
+      <i class="bi bi-plus-circle-fill me-2"></i>
+      Add Course
+    </button>
+  </div>
+
+  <!-- Statistics -->
+  <div class="row g-4 mb-4">
+
+    <div class="col-lg-4">
+      <div class="course-stat-card total-course">
+        <div>
+          <h6>Total Courses</h6>
+          <h2>{{ totalCourses }}</h2>
+          <small>
+            <i class="bi bi-arrow-up"></i>
+            +12% this month
+          </small>
+        </div>
+
+        <div class="stat-icon">
+          <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="course-stat-card students-course">
+        <div>
+          <h6>Total Students</h6>
+          <h2>{{ totalStudents }}</h2>
+          <small>
+            <i class="bi bi-arrow-up"></i>
+            +240 New
+          </small>
+        </div>
+
+        <div class="stat-icon">
+          <i class="bi bi-people-fill"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="course-stat-card revenue-course">
+        <div>
+          <h6>Revenue</h6>
+         <h2>{{ totalRevenue }}</h2>
+          <small>
+            <i class="bi bi-currency-rupee"></i>
+            This Month
+          </small>
+        </div>
+
+        <div class="stat-icon">
+          <i class="bi bi-wallet2"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Table Card -->
+  <div class="card course-table-card">
+
+    <div class="card-body">
+
+      <!-- Search -->
+      <div class="row align-items-center mb-4">
+
+        <div class="col-lg-7 mb-3 mb-lg-0">
+
+          <div class="search-box">
+            <i class="bi bi-search"></i>
+           <input
+  type="text"
+  class="form-control"
+  placeholder="Search courses..."
+  [(ngModel)]="searchText">
+          </div>
+
+        </div>
+
+
+        <div class="col-lg-2">
+
+          <select class="form-select">
+            <option>10 Entries</option>
+            <option>25 Entries</option>
+            <option>50 Entries</option>
+          </select>
+
+        </div>
+
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive">
+
+        <table class="table align-middle">
+
+          <thead>
+
+            <tr>
+              <th>Course</th>
+              <th>Instructor</th>
+         
+              <th>Students</th>
+              <th>Price</th>
+              <th class="text-center">Actions</th>
+            </tr>
+
+          </thead>
+<tbody>
+
+<tr *ngFor="let course of filteredCourses">
+
+  <td>
+
+    <div class="course-info">
+
+      <img [src]="course.image">
+
+      <div>
+
+        <h6>{{ course.title }}</h6>
+
+        <small>Duration : {{ course.duration }}</small>
+
+      </div>
+
+    </div>
+
+  </td>
+
+  <td>{{ course.instructor }}</td>
+
+  <td>{{ course.students }}</td>
+
+  <td class="price">
+    ₹{{ course.price }}
+  </td>
+
+  <td>
+
+    <div class="action-buttons">
+
+      <button
+        class="btn btn-warning btn-sm me-2"
+        (click)="editCourse(course)">
+
+        <i class="bi bi-pencil-fill"></i>
+
+      </button>
+
+      <button
+        class="btn btn-danger btn-sm"
+        (click)="deleteCourse(course.id)">
+
+        <i class="bi bi-trash-fill"></i>
+
+      </button>
+
+    </div>
+
+  </td>
+
+</tr>
+
+</tbody>
+        </table>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="d-flex justify-content-between align-items-center mt-4">
+
+        <p class="text-muted mb-0">
+          Showing 1 to 4 of 148 Courses
+        </p>
+
+        <ul class="pagination mb-0">
+
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link">1</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">2</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">3</a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link">Next</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

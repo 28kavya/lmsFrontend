@@ -1,0 +1,1179 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    font-family:'Poppins',sans-serif;
+    background:#f4f7fc;
+    overflow-x:hidden;
+}
+.badge
+{
+    padding:5px;   
+}
+/* ==========================================
+   TOPBAR
+========================================== */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    padding:22px 28px;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.05);
+    margin-bottom:30px;
+}
+
+.topbar-left h2{
+    font-size:30px;
+    font-weight:700;
+    color:#1b1f45;
+    margin-bottom:4px;
+}
+
+.topbar-left p{
+    margin:0;
+    color:#777;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon i {
+    font-size: 70px;
+    color:black;
+}
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+.search-box{
+    display:flex;
+    align-items:center;
+    background:#f4f7fc;
+    border-radius:50px;
+    padding:10px 18px;
+    width:320px;
+}
+
+.search-box i{
+    color:#6C63FF;
+    font-size:18px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    background:transparent;
+    margin-left:10px;
+    width:100%;
+    font-size:15px;
+} 
+/* ==========================================
+   ICON BOX
+========================================== */
+
+.icon-box{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#f4f7fc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.icon-box:hover{
+    background:#6C63FF;
+    color:#fff;
+}
+
+.icon-box i{
+    font-size:20px;
+}
+
+.badge-count{
+    position:absolute;
+    top:-4px;
+    right:-2px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#ff4d4f;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:600;
+}
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+}
+
+.profile img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #6C63FF;
+}
+
+.profile h6{
+    margin:0;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.profile small{
+    color:#777;
+}
+/* ==========================================
+   DASHBOARD STATISTICS CARDS
+========================================== */
+
+.stat-card{
+    background:#fff;
+    border-radius:20px;
+    padding:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    transition:.35s;
+    height:100%;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+.stat-content h6{
+    color:#777;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.stat-content h3{
+    font-size:34px;
+    font-weight:700;
+    color:#1b1f45;
+    margin-bottom:8px;
+}
+
+.stat-content small{
+    color:#16a34a;
+    font-weight:600;
+}
+
+.stat-icon{
+    width:72px;
+    height:72px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:32px;
+}
+
+/* Card Colors */
+
+.bg-blue{
+    background:#4f46e5;
+}
+
+.bg-green{
+    background:#22c55e;
+}
+
+.bg-orange{
+    background:#f59e0b;
+}
+
+.bg-red{
+    background:#ef4444;
+}
+
+/* ==========================================
+   CHART CARD
+========================================== */
+
+.chart-card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    height:100%;
+}
+
+.chart-card h5{
+    font-weight:700;
+    margin-bottom:20px;
+    color:#1b1f45;
+}
+
+.chart-placeholder{
+    height:320px;
+    border:2px dashed #d9d9d9;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#888;
+    font-size:18px;
+    background:#fafafa;
+}
+
+/* ==========================================
+   REVENUE CARD
+========================================== */
+
+.revenue-card{
+
+    background:linear-gradient(135deg,#EEF4FF,#F7FBFF);
+
+    border:1px solid #dfe8ff;
+
+    color:#1b1f45;
+
+    border-radius:22px;
+
+    padding:26px;
+
+    box-shadow:0 12px 30px rgba(60,72,100,.08);
+
+}
+
+.revenue-card h2{
+
+    color:#2e7d32;
+
+    font-size:42px;
+
+}
+
+/* .revenue-card .progress{
+
+    height:10px;
+
+    background:#dbe8ff;
+
+}
+
+.revenue-card .progress-bar{
+
+    background:#4CAF50;
+
+} */
+.progress{
+
+    height:12px;
+
+    border-radius:30px;
+
+    background:#e8eefc;
+
+}
+
+.progress-bar{
+
+    border-radius:30px;
+
+}
+
+/* ==========================================
+   QUICK ACTIONS
+========================================== */
+
+.quick-actions{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+.quick-actions h5{
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.quick-btn{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:15px;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.quick-btn i{
+    margin-right:10px;
+}
+
+.quick-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+}
+
+.btn-course{
+    background:#4f46e5;
+}
+
+.btn-student{
+    background:#22c55e;
+}
+
+.btn-report{
+    background:#f59e0b;
+}
+
+.btn-settings{
+    background:#ef4444;
+}
+
+/* ==========================================
+   MINI ANALYTICS CARDS
+========================================== */
+
+.mini-card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    transition:.35s;
+    height:100%;
+}
+
+.mini-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,.10);
+}
+
+.mini-icon{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+}
+
+.mini-content h3{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.mini-content p{
+    margin:4px 0;
+    color:#666;
+    font-size:14px;
+}
+
+.mini-content small{
+    font-weight:600;
+}
+
+/* ==========================================
+   GLOBAL CARD HOVER
+========================================== */
+
+.dashboard-card,
+.chart-card,
+.stat-card,
+.revenue-card,
+.quick-actions,
+.mini-card{
+    transition:.35s;
+}
+
+.dashboard-card:hover,
+.chart-card:hover,
+.revenue-card:hover,
+.quick-actions:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 45px rgba(0,0,0,.10);
+}
+/* ==========================================
+   COMMON DASHBOARD CARD
+========================================== */
+.dashboard-card{
+    background:linear-gradient(135deg,#ffffff,#f8faff);
+    border:1px solid #edf2ff;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 10px 30px rgba(60,72,100,.08);
+    transition:.35s;
+    overflow:hidden;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(76,94,170,.15);
+}
+.card-header-custom{
+
+    border-bottom:1px solid #edf2ff;
+
+    padding-bottom:15px;
+
+    margin-bottom:22px;
+
+}
+
+.card-header-custom h5{
+
+    color:#1c2758;
+
+    font-weight:700;
+
+}
+
+.card-header-custom i{
+    color:#6C63FF;
+}
+
+/* ==========================================
+   TABLES
+========================================== */
+.table{
+    margin:0;
+}
+
+.table thead{
+    background:#eef3ff;
+}
+
+.table thead th{
+    border:none;
+    color:#5b6388;
+    font-weight:700;
+    padding:18px;
+}
+
+.table tbody tr{
+    border-bottom:1px solid #eef2ff;
+    transition:.3s;
+}
+
+.table tbody tr:hover{
+    background:#f8fbff;
+}
+
+.table tbody td{
+    padding:18px;
+    vertical-align:middle;
+}
+/* Recent Student */
+
+.student-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.student-info img{
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #eef3ff;
+
+    box-shadow:0 6px 18px rgba(108,99,255,.12);
+
+}
+.student-info h6{
+    margin:0;
+    font-size:15px;
+    font-weight:600;
+}
+
+.student-info small{
+    color:#888;
+}
+
+/* ==========================================
+   STATUS BADGES
+========================================== */
+
+.badge-active{
+    background:#dcfce7;
+    color:#16a34a;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge-pending{
+    background:#fff7d6;
+    color:#ca8a04;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge-completed{
+    background:#dbeafe;
+    color:#2563eb;
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ==========================================
+   RECENT COURSES
+========================================== */
+.course-item{
+
+    background:#fafcff;
+
+    border:1px solid #edf2ff;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    transition:.3s;
+
+}
+
+.course-item:hover{
+
+    background:#eef5ff;
+
+    transform:translateX(6px);
+
+}
+
+.course-item:last-child{
+    border-bottom:none;
+}
+
+.course-item h6{
+    margin-bottom:6px;
+    font-weight:600;
+}
+
+.course-item small{
+    color:#888;
+}
+
+.course-price{
+    color:#6C63FF;
+    font-size:18px;
+    font-weight:700;
+}
+
+/* ==========================================
+   ACTIVITY TIMELINE
+========================================== */
+.activity-item{
+
+    background:#fafcff;
+
+    border-left:5px solid #6C63FF;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    display:flex;
+
+    gap:18px;
+
+    transition:.3s;
+
+}
+
+.activity-item:hover{
+
+    background:#eef5ff;
+
+    transform:translateX(5px);
+
+}
+.activity-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    color:white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+.activity-content h6{
+    margin-bottom:6px;
+    font-weight:600;
+    color:#1b1f45;
+}
+
+.activity-content p{
+    margin-bottom:4px;
+    color:#666;
+    font-size:14px;
+}
+
+.activity-content small{
+    color:#999;
+}
+
+/* ==========================================
+   TOP INSTRUCTORS
+========================================== */
+.instructor-card{
+    background:transparent;
+    border:none;
+    box-shadow:none;
+    text-align:center;
+    padding:20px;
+    transition:.3s;
+}
+
+.instructor-card:hover{
+    transform:translateY(-6px);
+}
+
+.instructor-card img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #ffffff;
+    box-shadow:0 12px 30px rgba(108,99,255,.18);
+    transition:.3s;
+}
+
+.instructor-card:hover img{
+    transform:scale(1.08);
+    border-color:#6C63FF;
+}
+
+.instructor-card h5{
+    margin-top:18px;
+    margin-bottom:6px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.instructor-card p{
+    color:#777;
+    margin-bottom:10px;
+}
+
+.rating{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:30px;
+    background:#FFF4D6;
+    color:#f59e0b;
+    font-weight:600;
+    font-size:14px;
+}
+
+.student-count{
+    background:#f4f7fc;
+    padding:10px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:600;
+    color:#6C63FF;
+}
+.course-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+}
+
+.course-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.course-details {
+    flex: 1;
+}
+
+.course-details h6 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.course-details small {
+    color: #6c757d;
+}
+
+.course-item .badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+.stat-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    min-height: 140px;
+    height: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ==========================================
+   PLATFORM PERFORMANCE
+========================================== */
+.performance-card{
+
+    background:linear-gradient(135deg,#ffffff,#f8fbff);
+
+    border:1px solid #edf2ff;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:0 10px 25px rgba(60,72,100,.08);
+
+}
+
+.performance-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.performance-card i{
+    font-size:36px;
+    color:#6C63FF;
+    margin-bottom:12px;
+}
+
+.performance-card h3{
+    font-size:30px;
+    font-weight:700;
+    color:#1b1f45;
+    margin-bottom:8px;
+}
+
+.performance-card p{
+    color:#777;
+    margin:0;
+}
+/* ==========================================
+   CALENDAR WIDGET
+========================================== */
+
+.calendar-widget{
+    text-align:center;
+}
+
+.calendar-widget h2{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
+    color:#1b1f45;
+}
+
+.calendar-widget table{
+    margin-bottom:0;
+}
+
+.calendar-widget th{
+    background:#6C63FF;
+    color:#fff;
+    border:none;
+    padding:12px;
+    font-weight:600;
+}
+
+.calendar-widget td{
+    height:48px;
+    vertical-align:middle;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.calendar-widget td:hover{
+    background:#eef2ff;
+}
+
+.calendar-widget .bg-primary{
+    background:#6C63FF !important;
+    color:#fff;
+}
+
+/* ==========================================
+   NOTIFICATIONS
+========================================== */
+
+.notification-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid #eeeeee;
+}
+
+.notification-item:last-child{
+    border-bottom:none;
+}
+
+.notification-item i{
+    font-size:22px;
+}
+
+.notification-item span{
+    color:#555;
+    font-size:15px;
+    font-weight:500;
+}
+
+/* ==========================================
+   TOP COURSES
+========================================== */
+
+.course-rank{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid #eeeeee;
+}
+
+.course-rank:last-child{
+    border-bottom:none;
+}
+
+.course-rank span{
+    font-weight:600;
+    color:#1b1f45;
+}
+
+.course-rank strong{
+    color:#6C63FF;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.dashboard-footer{
+    background:#ffffff;
+    padding:22px 28px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+    color:#666;
+    font-size:15px;
+}
+
+.dashboard-footer strong{
+    color:#1b1f45;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eef2f7;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6C63FF;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#5145d8;
+}
+
+/* ==========================================
+   BUTTON ANIMATIONS
+========================================== */
+
+.btn{
+    transition:all .3s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:#6C63FF;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#5548e5;
+}
+
+.btn-success:hover,
+.btn-warning:hover,
+.btn-danger:hover{
+    filter:brightness(.95);
+}
+
+/* ==========================================
+   CARD ANIMATION
+========================================== */
+
+.dashboard-card,
+.stat-card,
+.performance-card,
+.chart-card,
+.revenue-card,
+.quick-actions{
+    animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+
+from{
+    opacity:0;
+    transform:translateY(25px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1200px){
+
+.main-content{
+    margin-left:0;
+    width:100%;
+    padding:20px;
+}
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.dashboard{
+    flex-direction:column;
+}
+
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+.topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.topbar-right{
+    width:100%;
+    flex-wrap:wrap;
+}
+
+.search-box{
+    width:100%;
+}
+
+.profile{
+    width:100%;
+}
+
+.chart-placeholder{
+    height:220px;
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.main-content{
+    padding:15px;
+}
+
+.stat-card,
+.dashboard-card,
+.chart-card,
+.revenue-card,
+.quick-actions{
+    margin-bottom:20px;
+}
+
+.stat-content h3{
+    font-size:26px;
+}
+
+.topbar-left h2{
+    font-size:24px;
+}
+
+.logo{
+    font-size:24px;
+}
+
+.logo i{
+    font-size:28px;
+}
+
+.search-box{
+    width:100%;
+}
+
+.dashboard-footer{
+    text-align:center;
+}
+
+.dashboard-footer .d-flex{
+    flex-direction:column;
+    gap:10px;
+}
+
+}
+
+/* Small Mobile */
+
+@media(max-width:576px){
+
+.table{
+    font-size:13px;
+}
+
+.student-info img{
+    width:40px;
+    height:40px;
+}
+
+.instructor-left img{
+    width:46px;
+    height:46px;
+}
+
+.stat-icon{
+    width:60px;
+    height:60px;
+    font-size:26px;
+}
+
+.calendar-widget td{
+    height:40px;
+}
+
+}
+.quick-actions-card{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.action-btn{
+    height:55px;
+    font-size:16px;
+    font-weight:600;
+    border-radius:12px;
+}
+
+.action-btn i{
+    margin-right:10px;
+}

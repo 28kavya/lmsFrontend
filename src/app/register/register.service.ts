@@ -8,7 +8,7 @@ import { RegisterRequest } from '../models/register';
   providedIn: 'root'
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8081/api/auth';
+  private apiUrl = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) { }
    register(data: RegisterRequest): Observable<any> {

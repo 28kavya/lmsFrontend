@@ -9,6 +9,12 @@ import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LessonComponent } from './student/lesson/lesson.component';
 import { QuizComponent } from './student/quiz/quiz.component';
+import { AdminLayout } from './admin/admin-layout/admin-layout';
+import { Dashboard } from './admin/dashboard/dashboard';
+import { Courses } from './admin/courses/courses';
+import { Students } from './admin/students/students';
+import { Instructors } from './admin/instructors/instructors';
+import { Settings } from './admin/settings/settings';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -17,39 +23,121 @@ export const routes: Routes = [
    },
 
   { path: 'register', component: RegisterComponent },
+//     {
+// path:'student',
+
+// component:StudentLayout,
+
+// children:[
+
+// {
+// path:'dashboard',
+// component:StudentDashboard
+// },
+
+// {
+// path:'explore-courses',
+// component:ExploreCoursesComponent
+// },
+
+// {
+// path:'my-courses',
+// component:MyCoursesComponent
+// },
+// {
+//   path: 'lesson/:courseId',
+//   component: LessonComponent
+// },
+// {
+//    path:'quiz/:lessonId',
+//    component: QuizComponent
+// },
+// {
+// path:'',
+// redirectTo:'dashboard',
+// pathMatch:'full'
+// }]
+//     }
+{
+  path: 'admin',
+  component: AdminLayout,
+  children: [
+
     {
-path:'student',
+      path: 'dashboard',
+      component: Dashboard
+    },
 
-component:StudentLayout,
+    // ================= Courses =================
 
-children:[
+    {
+      path: 'courses',
+      component: Courses
+    },
 
-{
-path:'dashboard',
-component:StudentDashboard
-},
+    {
+      path: 'courses/add',
+      loadComponent: () =>
+        import('./admin/courses/add-course/add-course')
+          .then(m => m.AddCourse)
+    },
 
-{
-path:'explore-courses',
-component:ExploreCoursesComponent
-},
+    {
+      path: 'courses/edit',
+      loadComponent: () =>
+        import('./admin/courses/edit-course/edit-course')
+          .then(m => m.EditCourse)
+    },
 
-{
-path:'my-courses',
-component:MyCoursesComponent
-},
-{
-  path: 'lesson/:courseId',
-  component: LessonComponent
-},
-{
-   path:'quiz/:lessonId',
-   component: QuizComponent
-},
-{
-path:'',
-redirectTo:'dashboard',
-pathMatch:'full'
-}]
+    // ================= Students =================
+
+    {
+      path: 'students',
+      component: Students
+    },
+
+    {
+      path: 'students/add',
+      loadComponent: () =>
+        import('./admin/students/add-student/add-student')
+          .then(m => m.AddStudent)
+    },
+
+    {
+      path: 'students/edit/:id',
+      loadComponent: () =>
+        import('./admin/students/edit-student/edit-student')
+          .then(m => m.EditStudent)
+    },
+
+    // ================= Instructors =================
+
+    {
+      path: 'instructors',
+      component: Instructors
+    },
+
+    {
+      path: 'instructors/add',
+      loadComponent: () =>
+        import('./admin/instructors/add-instructor/add-instructor')
+          .then(m => m.AddInstructor)
+    },
+
+    {
+      path: 'instructors/edit/:id',
+      loadComponent: () =>
+        import('./admin/instructors/edit-instructor/edit-instructor')
+          .then(m => m.EditInstructor)
+    },
+
+    // ================= Settings =================
+
+    {
+      path: 'settings',
+      component: Settings
     }
+
+  ]
+}
 ];

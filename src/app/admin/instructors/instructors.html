@@ -1,0 +1,347 @@
+<div class="instructor-page">
+
+  <!-- ================= Header ================= -->
+
+  <div class="page-header">
+
+    <div>
+
+      <h2>Instructor Management</h2>
+
+      <p>
+        Dashboard /
+        <span>Instructors</span>
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="addInstructor()">
+
+      <i class="bi bi-plus-circle-fill me-2"></i>
+
+      Add Instructor
+
+    </button>
+
+  </div>
+
+  <!-- ================= Statistics ================= -->
+
+  <div class="row g-4 mb-4">
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Total Instructors</h6>
+
+          <h2>{{ totalInstructors }}</h2>
+
+          <small>Registered Trainers</small>
+
+        </div>
+
+        <div class="stat-icon blue">
+
+          <i class="bi bi-person-video3"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Active</h6>
+
+          <h2>{{ activeInstructors }}</h2>
+
+          <small>Available</small>
+
+        </div>
+
+        <div class="stat-icon green">
+
+          <i class="bi bi-check-circle-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Total Courses</h6>
+
+          <h2>{{ totalCourses }}</h2>
+
+          <small>Handled</small>
+
+        </div>
+
+        <div class="stat-icon orange">
+
+          <i class="bi bi-journal-bookmark-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-3">
+
+      <div class="stat-card">
+
+        <div>
+
+          <h6>Students</h6>
+
+          <h2>{{ totalStudents }}</h2>
+
+          <small>Enrolled</small>
+
+        </div>
+
+        <div class="stat-icon red">
+
+          <i class="bi bi-people-fill"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= Table Card ================= -->
+
+  <div class="card">
+
+    <div class="card-body">
+
+      <!-- Search -->
+
+      <div class="row mb-4">
+
+        <div class="col-md-8">
+
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search Instructor..."
+            [(ngModel)]="searchText">
+
+        </div>
+
+        <div class="col-md-4">
+
+          <select class="form-select">
+
+            <option>All Departments</option>
+
+            <option>Programming</option>
+
+            <option>Web Development</option>
+
+            <option>Database</option>
+
+            <option>Cloud</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <!-- Table -->
+
+      <div class="table-responsive">
+
+        <table class="table align-middle">
+
+          <thead>
+
+            <tr>
+
+              <th>Instructor</th>
+
+              <th>Email</th>
+
+              <th>Department</th>
+
+              <th>Courses</th>
+
+              <th>Students</th>
+
+              <th>Status</th>
+
+              <th class="text-center">
+                Actions
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let instructor of filteredInstructors">
+                <td>
+
+  <div class="instructor-info">
+
+    <img [src]="instructor.image" alt="Instructor">
+
+    <div>
+
+      <h6>{{ instructor.name }}</h6>
+
+      <small>{{ instructor.designation }}</small>
+
+    </div>
+
+  </div>
+
+</td>
+
+<td>
+  {{ instructor.email }}
+</td>
+
+<td>
+  {{ instructor.department }}
+</td>
+
+<td>
+  {{ instructor.courses }}
+</td>
+
+<td>
+  {{ instructor.students }}
+</td>
+
+<td>
+
+  <span
+    class="status"
+    [ngClass]="{
+      'active': instructor.status === 'Active',
+      'inactive': instructor.status === 'Inactive'
+    }">
+
+    {{ instructor.status }}
+
+  </span>
+
+</td>
+
+<td>
+
+  <div class="action-buttons">
+
+    <button
+      class="btn btn-info btn-sm me-2"
+      (click)="viewInstructor(instructor)">
+
+      <i class="bi bi-eye-fill"></i>
+
+    </button>
+
+    <button
+      class="btn btn-warning btn-sm me-2"
+      (click)="editInstructor(instructor)">
+
+      <i class="bi bi-pencil-fill"></i>
+
+    </button>
+
+    <button
+      class="btn btn-danger btn-sm"
+      (click)="deleteInstructor(instructor.id)">
+
+      <i class="bi bi-trash-fill"></i>
+
+    </button>
+
+  </div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+      <!-- Pagination -->
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+
+        <p class="mb-0">
+
+          Showing
+          {{ filteredInstructors.length }}
+          of
+          {{ instructors.length }}
+          Instructors
+
+        </p>
+
+        <ul class="pagination mb-0">
+
+          <li class="page-item disabled">
+
+            <a class="page-link">
+
+              Previous
+
+            </a>
+
+          </li>
+
+          <li class="page-item active">
+
+            <a class="page-link">
+
+              1
+
+            </a>
+
+          </li>
+
+          <li class="page-item">
+
+            <a class="page-link">
+
+              Next
+
+            </a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

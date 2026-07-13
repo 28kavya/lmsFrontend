@@ -34,7 +34,7 @@ login() {
 
       alert("Login Successful");
 
-      this.router.navigate(['/student/dashboard']);
+      this.router.navigate(['/admin/dashboard']);
 
     },
 

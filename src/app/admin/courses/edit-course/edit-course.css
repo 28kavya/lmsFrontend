@@ -1,0 +1,238 @@
+/* ==========================================
+   EDIT COURSE PAGE
+========================================== */
+
+.edit-course-page{
+    padding:30px;
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.page-header h2{
+    font-size:34px;
+    font-weight:700;
+    color:#1b1f45;
+}
+
+.page-header p{
+    color:#6c757d;
+    margin-top:5px;
+}
+
+.page-header span{
+    color:#6C63FF;
+    font-weight:600;
+}
+
+.back-btn{
+    border-radius:12px;
+    padding:10px 22px;
+    font-weight:600;
+}
+
+/* ==========================================
+   FORM CARD
+========================================== */
+
+.course-card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.course-card .card-header{
+    background:linear-gradient(135deg,#6C63FF,#4F46E5);
+    color:#fff;
+    padding:22px 30px;
+    border:none;
+}
+
+.course-card .card-header h4{
+    margin:0;
+    font-size:22px;
+    font-weight:600;
+}
+
+.course-card .card-header i{
+    margin-right:10px;
+}
+
+.course-card .card-body{
+    padding:35px;
+    background:#fff;
+}
+
+/* ==========================================
+   LABELS
+========================================== */
+
+label{
+    font-weight:600;
+    color:#1b1f45;
+    margin-bottom:8px;
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.form-control,
+.form-select{
+
+    height:55px;
+    border-radius:12px;
+    border:1px solid #dfe3eb;
+    box-shadow:none;
+    transition:.3s;
+    font-size:15px;
+
+}
+
+textarea.form-control{
+    height:auto;
+    min-height:170px;
+    resize:none;
+    padding-top:15px;
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#6C63FF;
+    box-shadow:0 0 0 .2rem rgba(108,99,255,.15);
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.form-buttons{
+
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:30px;
+
+}
+
+.cancel-btn{
+
+    padding:12px 28px;
+    border-radius:12px;
+    font-weight:600;
+
+}
+
+.save-btn{
+
+    background:#6C63FF;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    padding:12px 30px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.save-btn:hover{
+
+    background:#5648e5;
+    transform:translateY(-2px);
+
+}
+
+.save-btn i{
+    margin-right:8px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.page-header{
+
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+
+}
+
+.form-buttons{
+
+    flex-direction:column;
+
+}
+
+.form-buttons button{
+
+    width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.edit-course-page{
+
+    padding:20px;
+
+}
+
+.course-card .card-body{
+
+    padding:25px;
+
+}
+
+.page-header h2{
+
+    font-size:28px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.page-header{
+
+    text-align:center;
+
+}
+
+.back-btn{
+
+    width:100%;
+
+}
+
+.page-header h2{
+
+    font-size:24px;
+
+}
+
+.course-card .card-header{
+
+    text-align:center;
+
+}
+
+}
