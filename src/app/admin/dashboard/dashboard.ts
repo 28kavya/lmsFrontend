@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
+import { AdminService } from '../../services/admin.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -12,38 +12,42 @@ import { RouterModule } from '@angular/router';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class Dashboard {
 
-  dashboardStats = [
-    {
-      title: 'Total Students',
-      value: '2,548',
-      icon: 'bi-people-fill',
-      color: 'bg-blue',
-      growth: '+12%'
-    },
-    {
-      title: 'Total Courses',
-      value: '148',
-      icon: 'bi-journal-bookmark-fill',
-      color: 'bg-green',
-      growth: '+8%'
-    },
-    {
-      title: 'Instructors',
-      value: '56',
-      icon: 'bi-person-workspace',
-      color: 'bg-orange',
-      growth: '+5%'
-    },
-    {
-      title: 'Revenue',
-      value: '₹4.8L',
-      icon: 'bi-currency-rupee',
-      color: 'bg-red',
-      growth: '+18%'
-    }
-  ];
+
+export class AdminDashboard implements OnInit {
+  
+dashboard: any;
+adminName: string = '';
+  // dashboardStats = [
+  //   {
+  //     title: 'Total Students',
+  //     value: '2,548',
+  //     icon: 'bi-people-fill',
+  //     color: 'bg-blue',
+  //     growth: '+12%'
+  //   },
+  //   {
+  //     title: 'Total Courses',
+  //     value: '148',
+  //     icon: 'bi-journal-bookmark-fill',
+  //     color: 'bg-green',
+  //     growth: '+8%'
+  //   },
+  //   {
+  //     title: 'Instructors',
+  //     value: '56',
+  //     icon: 'bi-person-workspace',
+  //     color: 'bg-orange',
+  //     growth: '+5%'
+  //   },
+  //   {
+  //     title: 'Revenue',
+  //     value: '₹4.8L',
+  //     icon: 'bi-currency-rupee',
+  //     color: 'bg-red',
+  //     growth: '+18%'
+  //   }
+  // ];
 
   recentStudents = [
     {
@@ -149,22 +153,42 @@ export class Dashboard {
     }
   ];
 
-  constructor() {}
-
-  addCourse() {
-    alert('Add Course Clicked');
+  constructor(private adminService: AdminService) {}
+    ngOnInit(): void {
+      this.adminName = localStorage.getItem('username') || '';
+      console.log(this.adminName);
+    this.loadDashboard();
   }
 
-  addStudent() {
-    alert('Add Student Clicked');
+  loadDashboard() {
+    this.adminService.getDashboard().subscribe({
+      next: (data) => {
+        this.dashboard = data;
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
-  viewReports() {
-    alert('Reports Clicked');
-  }
+  // addCourse() {
+  //   alert('Add Course Clicked');
+  // }
 
-  settings() {
-    alert('Settings Clicked');
-  }
+  // addStudent() {
+  //   alert('Add Student Clicked');
+  // }
+
+  // viewReports() {
+  //   alert('Reports Clicked');
+  // }
+
+  // settings() {
+  //   alert('Settings Clicked');
+  // }
+// dashboard.component.ts
+
+
 
 }

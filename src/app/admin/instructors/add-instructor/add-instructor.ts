@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-add-instructor',
@@ -13,50 +14,40 @@ import { Router } from '@angular/router';
   templateUrl: './add-instructor.html',
   styleUrls: ['./add-instructor.css']
 })
-
 export class AddInstructor {
 
-  constructor(private router: Router) {}
+  constructor(
+    private adminService: AdminService,
+    private router: Router
+  ) {}
 
   instructor = {
-
-    id: 0,
-
-    image: '',
-
     name: '',
-
-    designation: '',
-
     email: '',
-
-    department: 'Programming',
-
-    courses: 0,
-
-    students: 0,
-
-    status: 'Active'
-
+    password: ''
   };
 
   saveInstructor() {
 
-    const instructors =
-      JSON.parse(localStorage.getItem('instructors') || '[]');
+    this.adminService.addInstructor(this.instructor).subscribe({
 
-    this.instructor.id = Date.now();
+      next: (res) => {
 
-    instructors.push(this.instructor);
+        alert("Instructor Added Successfully");
 
-    localStorage.setItem(
-      'instructors',
-      JSON.stringify(instructors)
-    );
+        this.router.navigate(['/admin/instructors']);
 
-    alert('Instructor Added Successfully!');
+      },
 
-    this.router.navigate(['/admin/instructors']);
+      error: (err) => {
+
+        console.log(err);
+
+        alert("Unable to Add Instructor");
+
+      }
+
+    });
 
   }
 

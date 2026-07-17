@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StudentDashboardService } from '../student.service';
+import { StudentDashboardService } from '../../services/student.service';
 
 @Component({
   selector: 'app-student-navbar',

@@ -5,8 +5,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import {
   StudentDashboardService,
-  Lesson
-} from '../student.service';
+} from '../../services/student.service';
+import { LessonService } from '../../services/lesson.service';
+import { Lesson } from '../../models/lessonDto';
 
 @Component({
   selector: 'app-lesson',
@@ -33,7 +34,8 @@ export class LessonComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
-    private studentDashboardService: StudentDashboardService
+    private studentDashboardService: StudentDashboardService,
+    private lessonService:LessonService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class LessonComponent implements OnInit {
 
   loadLessons(): void {
 
-    this.studentDashboardService.getLessons(this.courseId)
+    this.lessonService.getLessons(this.courseId)
       .subscribe({
 
         next: (data) => {

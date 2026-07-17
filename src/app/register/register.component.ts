@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule} from '@angular/forms';
-import { RegisterService } from './register.service';
+import { RegisterService } from '../services/register.service';
 import { RegisterRequest } from '../models/register';
 import { CommonModule } from '@angular/common';
 
@@ -62,6 +62,8 @@ export class RegisterComponent {
     next: (response) => {
 
       console.log(response);
+      localStorage.setItem('token', response.token);
+localStorage.setItem('role', response.role);
       alert("Registration Successful!");
 
       this.firstName = '';

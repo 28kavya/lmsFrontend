@@ -13,7 +13,7 @@
 
         <p>
           Welcome back,
-          <strong>Bhavani 👋</strong>
+          <strong>{{ adminName }}, 👋</strong>
         </p>
 
       </div>
@@ -74,7 +74,7 @@
 
           <div>
 
-            <h6>Bhavani</h6>
+            <h6>{{ adminName }}</h6>
 
             <small>Administrator</small>
 
@@ -121,7 +121,7 @@
 
       <div class="card-content">
         <h6>Total Students</h6>
-        <h2>15,842</h2>
+        <h2>{{ dashboard?.totalStudents }}</h2>
         <span class="text-success">
           <i class="bi bi-arrow-up"></i> +18%
         </span>
@@ -138,7 +138,7 @@
 
       <div class="card-content">
         <h6>Total Courses</h6>
-        <h2>186</h2>
+        <h2>{{ dashboard?.totalCourses }}</h2>
         <span class="text-primary">12 New</span>
       </div>
     </div>
@@ -153,7 +153,7 @@
 
       <div class="card-content">
         <h6>Instructors</h6>
-        <h2>248</h2>
+        <h2>{{ dashboard?.totalInstructors }}</h2>
         <span class="text-warning">+9 Joined</span>
       </div>
     </div>
@@ -168,7 +168,7 @@
 
       <div class="card-content">
         <h6>Revenue</h6>
-        <h2>₹8.45L</h2>
+        <h2>{{ dashboard?.totalRevenue }}</h2>
         <span class="text-danger">This Month</span>
       </div>
     </div>
@@ -187,14 +187,11 @@
 
     <div class="quick-actions">
 
-        <button class="btn btn-primary action-btn">
-            <i class="bi bi-journal-plus"></i>
-            Add Course
-        </button>
+        <button class="btn btn-warning" routerLink="/admin/courses/add">add course</button>
 
-        <button class="btn btn-success action-btn">
-            <i class="bi bi-person-plus-fill"></i>
-            Add Student
+        <button class="btn btn-success action-btn" routerLink="/admin/instructors/add">
+           
+          Add Instructor
         </button>
 
         <button class="btn btn-warning action-btn">
@@ -295,7 +292,7 @@
 
       <div class="analytics-box">
 
-        <h2>₹8,45,200</h2>
+        <h2>₹{{ dashboard?.totalRevenue }}</h2>
 
         <p>Total Revenue</p>
 

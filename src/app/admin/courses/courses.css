@@ -375,6 +375,9 @@ body{
     color:#dc2626;
 }
 
+
+
+
 /* ==========================================
    PRICE
 ========================================== */
@@ -517,6 +520,45 @@ body{
     justify-content:center;
     align-items:center;
     border-radius:8px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-edit,
+.btn-delete {
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Edit Button */
+.btn-edit {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+/* Delete Button */
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
 }
 /* ==========================================
    RESPONSIVE

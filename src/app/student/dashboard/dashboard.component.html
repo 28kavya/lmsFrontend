@@ -69,16 +69,8 @@
 
         <p>{{ course.description }}</p>
 
-        <p class="progress-text">
-          {{ course.progress }}% Completed
-        </p>
-
-        <div class="progress">
-          <div
-            class="progress-bar"
-            [style.width.%]="course.progress">
-          </div>
-        </div>
+    
+       
 
       </div>
 
@@ -87,7 +79,7 @@
 
         <button
           class="continue-btn"
-          (click)="continueLearning(course.courseId)">
+          (click)="continueLearning(course.id)">
           Continue
         </button>
 

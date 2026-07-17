@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { StudentDashboardService, StudentDashboardDTO, MyCourse } from '../student.service';
+import { StudentDashboardService } from '../../services/student.service';
+import { StudentDashboardDTO } from '../../models/studentDashboardDto';
+import { Course } from '../../models/courseDto';
 @Component({
   selector: 'app-student-dashboard',
   standalone: true,
@@ -16,7 +18,7 @@ export class StudentDashboard implements OnInit {
      console.log("StudentDashboard component loaded");
    
   }
-  courses: MyCourse[] = [];
+  courses: Course[] = [];
 
   ngOnInit(): void {
 

@@ -1,0 +1,104 @@
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4 fw-bold">
+        Student Management
+    </h2>
+
+    <!-- Search -->
+
+    <div class="row justify-content-center mb-4">
+
+        <div class="col-md-6">
+
+            <input
+  type="text"
+  class="form-control"
+  placeholder="Search student..."
+  [(ngModel)]="searchText"
+  (input)="searchStudent()">
+        </div>
+
+    </div>
+
+    <!-- Statistics Card -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <div class="row text-center">
+
+                <div class="col-md-3 border-end">
+
+                    <h3>{{students.length}}</h3>
+
+                    <p>Total Students</p>
+
+                </div>
+
+                <div class="col-md-3 border-end">
+
+                    <h3>2</h3>
+
+                    <p>Active</p>
+
+                </div>
+
+                <div class="col-md-3 border-end">
+
+                    <h3>1</h3>
+
+                    <p>Completed</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3>1</h3>
+
+                    <p>New Students</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Student Table -->
+
+   <div class="card-header text-white" style="background-color: #e27107;">
+    <h5 class="mb-0">
+        Student Details
+    </h5>
+</div>
+        <div class="table-responsive">
+
+            <table class="table table-hover mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Progress</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+<tbody>
+  @for (student of filteredStudents; track $index) {
+    <tr>
+      <td>{{ student.name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.course }}</td>
+      <td>{{ student.progress }}</td>
+      <td>{{ student.status }}</td>
+    </tr>
+  }
+</tbody>
+</table>

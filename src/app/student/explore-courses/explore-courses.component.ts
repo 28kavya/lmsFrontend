@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentDashboardService, MyCourse as Course } from '../student.service';
+import { StudentDashboardService } from '../../services/student.service';
+import { Course } from '../../models/courseDto';
+import { CourseService } from '../../services/course.service';
 
 @Component({
   selector: 'app-explore-courses',
@@ -13,11 +15,11 @@ export class ExploreCoursesComponent implements OnInit {
 
   courses: Course[] = [];
 
-  constructor(private studentDashboardService: StudentDashboardService) {}
+  constructor(private studentDashboardService: StudentDashboardService,private courseService:CourseService ) {}
 
   ngOnInit(): void {
 
-    this.studentDashboardService.getAllCourses().subscribe({
+    this.courseService.getAllCourses().subscribe({
 
       next: (data: any) => {
 

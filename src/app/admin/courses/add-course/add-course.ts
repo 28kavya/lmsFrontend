@@ -1,61 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../../services/admin.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
+  imports: [CommonModule,FormsModule],
   templateUrl: './add-course.html',
   styleUrls: ['./add-course.css']
 })
-export class AddCourse {
+export class AddCourse implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private adminService: AdminService) {}
 
+  // List of instructors for the dropdown
+  instructors: any[] = [];
+  dashboard: any;
+  // Course object
   course = {
-    id: 0,
-    image: '',
     title: '',
-    instructor: '',
-    category: '',
-    duration: '',
+    description: '',
     price: 0,
-    students: 0,
-    status: 'Active',
-    description: ''
+    instructorId: 0
   };
 
-  saveCourse() {
-
-    // Get existing courses
-    const storedCourses = localStorage.getItem('courses');
-
-    let courses = storedCourses
-      ? JSON.parse(storedCourses)
-      : [];
-
-    // Generate new ID
-    this.course.id = Date.now();
-
-    // Add new course
-    courses.push(this.course);
-
-    // Save back to localStorage
-    localStorage.setItem(
-      'courses',
-      JSON.stringify(courses)
-    );
-
-    alert('Course Added Successfully!');
-
-    // Navigate back to Course List
-    this.router.navigate(['/admin/courses']);
-
+  ngOnInit(): void {
+    this.loadInstructors();
   }
 
+  loadInstructors() {
+    this.adminService.getAllInstructors().subscribe({
+      next: (data) => {
+        this.instructors = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  saveCourse() {
+    this.adminService.addCourse(this.course).subscribe({
+      next: (res) => {
+         console.log(res);
+        alert('Course Added Successfully');
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+ 
 }

@@ -1,77 +1,90 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from '../../../services/course.service';
+import { Course } from '../../../models/courseDto';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { User } from '../../../models/User';
+import { Instructor } from '../../../models/Instructor';
+
 
 @Component({
   selector: 'app-edit-course',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule
-  ],
+   standalone: true,
+   imports: [CommonModule, FormsModule],
   templateUrl: './edit-course.html',
   styleUrls: ['./edit-course.css']
 })
-export class EditCourse implements OnInit {
+export class EditCourseComponent implements OnInit {
 
-  constructor(private router: Router) {}
-
-  course: any = {
+  course: Course = {
     id: 0,
-    image: '',
     title: '',
-    instructor: '',
-    category: '',
-    duration: '',
+    description: '',
     price: 0,
-    students: 0,
-    status: '',
-    description: ''
+    instructorId: 0,
+    instructor:''
   };
+
+  courseId!: number;
+  insturctorList:Instructor[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private courseService: CourseService
+  ) {}
 
   ngOnInit(): void {
 
-    const selectedCourse = localStorage.getItem('selectedCourse');
+    this.getAllInstructor()
+    this.courseId = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (selectedCourse) {
-      this.course = JSON.parse(selectedCourse);
-    }
-
+    // Load existing course
+    this.courseService.getCourseById(this.courseId)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.course = data;
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 
-  updateCourse() {
+  updateCourse(): void {
 
-    let courses = JSON.parse(localStorage.getItem('courses') || '[]');
-
-    const index = courses.findIndex(
-      (c: any) => c.id === this.course.id
-    );
-
-    if (index !== -1) {
-
-      courses[index] = this.course;
-
-      localStorage.setItem(
-        'courses',
-        JSON.stringify(courses)
-      );
-
-      localStorage.removeItem('selectedCourse');
-
-      alert('Course Updated Successfully!');
-
-      this.router.navigate(['/admin/courses']);
-
-    }
-
+    this.courseService.editCourse(this.courseId, this.course)
+      .subscribe({
+        next: (data) => {
+          alert('Course updated successfully');
+          console.log(data);
+          this.router.navigate(['/admin/courses']);
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Update failed');
+        }
+      });
   }
 
-  cancel() {
-
+  cancel(): void {
     this.router.navigate(['/admin/courses']);
-
   }
 
+
+  getAllInstructor()
+  {
+    this.courseService.getAllInstructor().subscribe({
+      next:(responseData)=>
+      {
+        this.insturctorList=responseData;
+      },
+
+      error:(err)=>{
+        console.log(err)
+      }
+    });
+  }
 }

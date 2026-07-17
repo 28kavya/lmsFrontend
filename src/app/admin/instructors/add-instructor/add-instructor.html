@@ -1,172 +1,60 @@
-<div class="add-instructor-page">
+<div class="container mt-5">
 
-  <!-- Header -->
+<div class="card">
 
-  <div class="page-header">
+<div class="card-header">
 
-    <div>
+<h3>Add Instructor</h3>
 
-      <h2>Add Instructor</h2>
+</div>
 
-      <p>
-        Dashboard /
-        Instructors /
-        <strong>Add Instructor</strong>
-      </p>
+<div class="card-body">
 
-    </div>
+<div class="mb-3">
 
-  </div>
+<label>Name</label>
 
-  <!-- Form Card -->
+<input
+type="text"
+class="form-control"
+[(ngModel)]="instructor.name">
 
-  <div class="card form-card">
+</div>
 
-    <div class="card-body">
 
-      <form (ngSubmit)="saveInstructor()">
+<div class="mb-3">
 
-        <div class="row">
+<label>Email</label>
 
-          <!-- Name -->
+<input
+type="email"
+class="form-control"
+[(ngModel)]="instructor.email">
 
-          <div class="col-md-6 mb-4">
+</div>
 
-            <label class="form-label">
-              Instructor Name
-            </label>
 
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="instructor.name"
-              name="name"
-              required>
+<div class="mb-3">
 
-          </div>
+<label>Password</label>
 
-          <!-- Designation -->
+<input
+type="password"
+class="form-control"
+[(ngModel)]="instructor.password">
 
-          <div class="col-md-6 mb-4">
+</div>
 
-            <label class="form-label">
-              Designation
-            </label>
+<button
+class="btn btn-primary"
+(click)="saveInstructor()">
 
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="instructor.designation"
-              name="designation">
+Save Instructor
 
-          </div>
+</button>
 
-          <!-- Email -->
+</div>
 
-          <div class="col-md-6 mb-4">
-
-            <label class="form-label">
-              Email
-            </label>
-
-            <input
-              type="email"
-              class="form-control"
-              [(ngModel)]="instructor.email"
-              name="email">
-
-          </div>
-
-          <!-- Department -->
-
-          <div class="col-md-6 mb-4">
-
-            <label class="form-label">
-              Department
-            </label>
-
-            <select
-              class="form-select"
-              [(ngModel)]="instructor.department"
-              name="department">
-
-              <option>Programming</option>
-              <option>Web Development</option>
-              <option>Database</option>
-              <option>Cloud</option>
-
-            </select>
-
-          </div>
-
-          <!-- Courses -->
-
-          <div class="col-md-6 mb-4">
-
-            <label class="form-label">
-              Courses
-            </label>
-
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="instructor.courses"
-              name="courses">
-
-          </div>
-
-          <!-- Students -->
-
-          <div class="col-md-6 mb-4">
-
-            <label class="form-label">
-              Students
-            </label>
-
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="instructor.students"
-              name="students">
-
-          </div>
-
-          <!-- Image -->
-
-          <div class="col-12 mb-4">
-
-            <label class="form-label">
-              Profile Image URL
-            </label>
-
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="instructor.image"
-              name="image">
-
-          </div>
-
-        </div>
-
-        <div class="text-end">
-
-          <button
-            type="submit"
-            class="btn btn-primary px-5">
-
-            <i class="bi bi-check-circle-fill me-2"></i>
-
-            Save Instructor
-
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </div>
+</div>
 
 </div>

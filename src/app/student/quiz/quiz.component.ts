@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 
 import {
   StudentDashboardService,
-  Quiz,
-  QuizResult
-} from '../student.service';
+} from '../../services/student.service';
+import { Quiz } from '../../models/quizDto';
+import { QuizResult } from '../../models/quizResultDto';
 
 @Component({
   selector: 'app-quiz',

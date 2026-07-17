@@ -22,7 +22,7 @@
       <div class="course-stat-card total-course">
         <div>
           <h6>Total Courses</h6>
-          <h2>{{ totalCourses }}</h2>
+          <h2>{{ dashboard?.totalCourses }}</h2>
           <small>
             <i class="bi bi-arrow-up"></i>
             +12% this month
@@ -39,7 +39,7 @@
       <div class="course-stat-card students-course">
         <div>
           <h6>Total Students</h6>
-          <h2>{{ totalStudents }}</h2>
+          <h2>{{ dashboard?.totalStudents }}</h2>
           <small>
             <i class="bi bi-arrow-up"></i>
             +240 New
@@ -56,7 +56,7 @@
       <div class="course-stat-card revenue-course">
         <div>
           <h6>Revenue</h6>
-         <h2>{{ totalRevenue }}</h2>
+         <h2>{{ dashboard?.totalRevenue }}</h2>
           <small>
             <i class="bi bi-currency-rupee"></i>
             This Month
@@ -126,55 +126,34 @@
 
 <tr *ngFor="let course of filteredCourses">
 
-  <td>
+    <td>
 
-    <div class="course-info">
+        <h5>{{course.title}}</h5>
 
-      <img [src]="course.image">
+        <small>{{course.description}}</small>
 
-      <div>
+    </td>
 
-        <h6>{{ course.title }}</h6>
+    <td>
+        {{course.instructor}}
+    </td>
 
-        <small>Duration : {{ course.duration }}</small>
+    <td>
+        {{course.students}}
+    </td>
 
-      </div>
+    <td>
+        ₹{{course.price}}
+    </td>
+<td class="actions">
+  <button class="btn-edit" (click)="editCourse(course)">
+    <i class="fas fa-edit"></i> Edit
+  </button>
 
-    </div>
-
-  </td>
-
-  <td>{{ course.instructor }}</td>
-
-  <td>{{ course.students }}</td>
-
-  <td class="price">
-    ₹{{ course.price }}
-  </td>
-
-  <td>
-
-    <div class="action-buttons">
-
-      <button
-        class="btn btn-warning btn-sm me-2"
-        (click)="editCourse(course)">
-
-        <i class="bi bi-pencil-fill"></i>
-
-      </button>
-
-      <button
-        class="btn btn-danger btn-sm"
-        (click)="deleteCourse(course.id)">
-
-        <i class="bi bi-trash-fill"></i>
-
-      </button>
-
-    </div>
-
-  </td>
+  <button class="btn-delete" (click)="deleteCourse(course.id)">
+    <i class="fas fa-trash"></i> Delete
+  </button>
+</td>
 
 </tr>
 
