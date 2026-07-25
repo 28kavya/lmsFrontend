@@ -17,7 +17,7 @@ import { Instructors } from './admin/instructors/instructors';
 import { Settings } from './admin/settings/settings';
 import { Instructor } from './instructor/instructor';
 import { Quizzes } from './instructor/quizzes/quizzes';
-import { LessonsComponent } from './instructor/create-course/lessons';
+import { CreateLessonComponent } from './instructor/create-course/lessons';
 import { Analytics } from './instructor/analytics/analytics';
 import { InstructorDashboard } from './instructor/dashboard/dashboard';
 import { AdminDashboard } from './admin/dashboard/dashboard';
@@ -251,7 +251,7 @@ export const routes: Routes = [
     data: { role: 'INSTRUCTOR' },
     children: [
       { path: 'dashboard', component: InstructorDashboard },
-      { path: 'create-course', component: LessonsComponent },
+      { path: 'create-course', component: CreateLessonComponent },
       { path: 'students', component: Students },
       { path: 'quizzes', component: Quizzes },
       { path: 'analytics', component: Analytics },

@@ -88,25 +88,48 @@ markCompleted(): void {
     return;
   }
 
-  this.studentDashboardService
-      .completeLesson(this.selectedLesson.id)
-      .subscribe({
-
-        next: () => {
-
-          alert("Lesson completed!");
-
-          this.quizUnlocked = true;
-
-        },
-
-        error: (err) => {
-          console.error(err);
-        }
-
-      });
-
 }
+ completeCurrentLesson(): void {
+
+  // Make sure a lesson is selected
+  if (!this.selectedLesson) {
+    console.error('No lesson selected');
+    return;
+  }
+
+  // Make sure lesson ID exists
+  if (this.selectedLesson.id === undefined) {
+    console.error('Lesson ID is missing');
+    return;
+  }
+}
+
+  // Now TypeScript knows id is definitely a number
+//   this.lessonService
+//     .completeLesson(this.selectedLesson.id)
+//     .subscribe({
+
+//       next: (response) => {
+
+//         console.log(
+//           'Lesson completed successfully:',
+//           response
+//         );
+
+//       },
+
+//       error: (error) => {
+
+//         console.error(
+//           'Error completing lesson:',
+//           error
+//         );
+
+//       }
+
+//     });
+
+// }
 
  startQuiz() {
 
@@ -116,5 +139,5 @@ markCompleted(): void {
   ]);
 
 }
-
 }
+// }

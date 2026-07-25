@@ -1,14 +1,13 @@
+export interface Lesson {
 
-export interface Lesson{
+  id?: number;
 
-    id:number;
+  title?: string;
 
-    title:string;
+  lessonName: string;
 
-    description:string;
+  videoUrl: string;
 
-    videoUrl:string;
-
-    lessonOrder:number;
-
+  courseId: number;
+   description?: string;
 }

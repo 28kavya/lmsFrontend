@@ -1,127 +1,307 @@
-import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { InstructorService } from '../../services/Instructor.service';
 import { Course } from '../../models/courseDto';
-import { CourseService } from '../../services/course.service';
+import { Lesson } from '../../models/lessonDto';
 
 @Component({
-  selector: 'app-lessons',
-  imports: [FormsModule, CommonModule],
+  selector: 'app-create-lesson',
   standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './lessons.html',
-  styleUrls: ['./lessons.css'],
+  styleUrls: ['./lessons.css']
 })
-export class LessonsComponent implements OnInit {
+export class CreateLessonComponent implements OnInit {
 
+  // ============================================
+  // COURSES FROM BACKEND
+  // ============================================
 
-  
-  lessonName = '';
-  videoUrl = '';
+  courses: Course[] = [];
 
-  lessons: any[] = [];
-  course: Course[] = [];
-  selectedCourseId: number | null = null;
+  // ============================================
+  // SELECTED COURSE
+  // ============================================
+
+  course = {
+    courseId: 0
+  };
+
+  // ============================================
+  // LESSON FORM
+  // ============================================
+
+  lessonName: string = '';
+  videoUrl: string = '';
+
+  // ============================================
+  // TEMPORARY LESSON LIST
+  // ============================================
+
+  lessons: Lesson[] = [];
+
+  // ============================================
+  // LOADING STATES
+  // ============================================
+
+  loadingCourses: boolean = false;
+  creatingLessons: boolean = false;
+
+  // ============================================
+  // CONSTRUCTOR
+  // ============================================
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private courseService: CourseService,
+    private instructorService: InstructorService
   ) {}
 
-  ngOnInit(): void {
-    const storedLessons = localStorage.getItem('lessons');
-    if (storedLessons) {
-      try {
-        const parsed = JSON.parse(storedLessons);
-        if (Array.isArray(parsed)) {
-          this.lessons = parsed.map((lesson: any, index: number) => ({
-            title: lesson.title || `Lesson ${index + 1}`,
-            lessonName: lesson.lessonName || '',
-            videoUrl: lesson.video || '',
-            video: this.sanitizer.bypassSecurityTrustResourceUrl(lesson.video || ''),
-          }));
-        }
-      } catch (error) {
-        console.warn('Failed to load saved lessons', error);
-      }
-    }
+  // ============================================
+  // ON INIT
+  // ============================================
 
-    this.getAllCourses();
+  ngOnInit(): void {
+
+    this.loadCourses();
+
   }
 
-  addLesson() {
-    let url = this.videoUrl;
+  // ============================================
+  // FETCH COURSES FROM BACKEND
+  // ============================================
 
-    if (url.includes('<iframe')) {
-      const match = url.match(/src="([^"]+)"/);
-      if (match) {
-        url = match[1];
+  loadCourses(): void {
+
+    this.loadingCourses = true;
+
+    this.instructorService.getMyCourses().subscribe({
+
+      next: (response: Course[]) => {
+
+        console.log('Courses received from backend:', response);
+
+        this.courses = response;
+
+        this.loadingCourses = false;
+
+      },
+      
+
+      error: (error) => {
+
+        console.error('Error fetching courses:', error);
+
+        this.loadingCourses = false;
+
+        alert('Failed to load courses from backend');
+
       }
-    }
 
-    this.lessons.push({
-      title: `Lesson ${this.lessons.length + 1}`,
-      lessonName: this.lessonName,
-      video: this.sanitizer.bypassSecurityTrustResourceUrl(url),
     });
 
-    // Save plain URLs, not SafeResourceUrl objects
-    localStorage.setItem(
-      'lessons',
-      JSON.stringify(
-        this.lessons.map((l) => ({
-          title: l.title,
-          lessonName: l.lessonName,
-          video: url,
-        })),
-      ),
+  }
+
+  // ============================================
+  // ADD LESSON TO TEMPORARY LIST
+  // ============================================
+
+  addLesson(): void {
+
+    // Check course selection
+    if (!this.course.courseId || this.course.courseId === 0) {
+
+      alert('Please select a course');
+
+      return;
+
+    }
+
+    // Check lesson name
+    if (!this.lessonName.trim()) {
+
+      alert('Please enter lesson name');
+
+      return;
+
+    }
+
+    // Check video URL
+    if (!this.videoUrl.trim()) {
+
+      alert('Please enter video URL');
+
+      return;
+
+    }
+
+    // Find selected course
+    const selectedCourse = this.courses.find(
+      course => course.id === this.course.courseId
     );
 
+    // Create temporary lesson object
+    const newLesson: Lesson = {
+
+      // This is needed by your HTML
+      title: selectedCourse?.title || 'Course Lesson',
+
+      lessonName: this.lessonName.trim(),
+
+      videoUrl: this.videoUrl.trim(),
+
+      // Course ID required by backend
+      courseId: this.course.courseId
+
+    };
+
+    // Add lesson to list
+    this.lessons.push(newLesson);
+
+    console.log('Lesson added:', newLesson);
+
+    console.log('All temporary lessons:', this.lessons);
+
+    // Clear only lesson fields
     this.lessonName = '';
+
     this.videoUrl = '';
+
   }
-  deleteLesson(index: number) {
+
+  // ============================================
+  // DELETE LESSON
+  // ============================================
+
+  deleteLesson(index: number): void {
+
+    if (index < 0 || index >= this.lessons.length) {
+
+      return;
+
+    }
+
     this.lessons.splice(index, 1);
 
-    this.lessons.forEach((lesson, i) => {
-      lesson.title = 'Lesson ' + (i + 1);
-    });
-
-    localStorage.setItem('lessons', JSON.stringify(this.lessons));
   }
 
-  previousLesson(index: number) {
-    if (index > 0) {
-      const previousCard = document.getElementById('lesson-' + (index - 1));
+  // ============================================
+  // MOVE LESSON UP
+  // ============================================
 
-      previousCard?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }
-  createCourse() {
-    alert('🎉 Your lessons has been successfully created!');
-  }
-  createLessons() {
-    if (this.lessons.length === 0) {
-      alert('Please add at least one lesson.');
+  previousLesson(index: number): void {
+
+    if (index <= 0) {
+
       return;
+
     }
 
-    alert('🎉 Your lessons are created successfully!');
+    const temp = this.lessons[index];
+
+    this.lessons[index] = this.lessons[index - 1];
+
+    this.lessons[index - 1] = temp;
+
   }
 
-  //get all the courses
-  getAllCourses() {
-    this.courseService.getAllCourses().subscribe({
-      next: (data) => {
-        console.log('Courses:', data);
-        this.course = data;
-      },
-      error: (err) => {
-        console.error(err);
-      },
+  // ============================================
+  // CREATE ALL LESSONS IN DATABASE
+  // ============================================
+
+  createLessons(): void {
+
+    // Check course
+    if (!this.course.courseId || this.course.courseId === 0) {
+
+      alert('Please select a course');
+
+      return;
+
+    }
+
+    // Check lessons
+    if (this.lessons.length === 0) {
+
+      alert('Please add at least one lesson');
+
+      return;
+
+    }
+
+    // Prevent duplicate clicks
+    if (this.creatingLessons) {
+
+      return;
+
+    }
+
+    this.creatingLessons = true;
+
+    console.log(
+      'Sending lessons to Spring Boot:',
+      this.lessons
+    );
+
+    // Create each lesson in backend
+    const requests = this.lessons.map(
+      lesson => this.instructorService.createLesson(lesson)
+    );
+
+    // Execute all API calls
+    let completedRequests = 0;
+
+    requests.forEach(request => {
+
+      request.subscribe({
+
+        next: (response) => {
+
+          console.log(
+            'Lesson created successfully:',
+            response
+          );
+
+          completedRequests++;
+
+          // All lessons created
+          if (completedRequests === requests.length) {
+
+            this.creatingLessons = false;
+
+            alert(
+              `${completedRequests} lesson(s) created successfully`
+            );
+
+            // Clear temporary list
+            this.lessons = [];
+
+          }
+
+        },
+
+        error: (error) => {
+
+          console.error(
+            'Error creating lesson:',
+            error
+          );
+
+          this.creatingLessons = false;
+
+          alert(
+            'Failed to create lesson. Please check backend.'
+          );
+
+        }
+
+      });
+
     });
+
   }
+
 }

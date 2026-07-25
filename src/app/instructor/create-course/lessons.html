@@ -1,173 +1,342 @@
-<!-- <div class="container-fluid mt-4">
+<div class="container mt-4">
 
-    <div class="row">
+  <div class="card p-4 shadow-sm">
 
-        <div class="col-lg-12">
+    <!-- ======================================== -->
+    <!-- PAGE TITLE -->
+    <!-- ======================================== -->
 
-            <div class="dashboard-card">
-
-                <div class="card-header-custom">
-                    <h4>
-                        <i class="bi bi-journal-plus me-2"></i>
-                        Create Course
-                    </h4>
-                </div>
+    <h3 class="mb-4">
+      <i class="bi bi-journal-plus me-2"></i>
+      Create Course Lessons
+    </h3>
 
 
+    <!-- ======================================== -->
+    <!-- SELECT COURSE -->
+    <!-- ======================================== -->
 
-                <div class="row mt-4">
+    <div class="mb-4">
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-bold">Course Title</label>
-                        <input type="text" class="form-control" placeholder="Enter Course Title">
-                    </div>
+      <label class="form-label fw-bold">
+        Select Course
+      </label>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label fw-bold">lessson Name</label>
-<input
-type="text"
-class="form-control"
-placeholder="Lesson Name"
-[(ngModel)]="lessonName">                    </div>
+      <!-- Loading Courses -->
 
-<input
-type="text"
-class="form-control"
-placeholder="Paste YouTube iframe or embed URL"
-[(ngModel)]="videoUrl">
+      @if (loadingCourses) {
 
-<br>
+        <div class="alert alert-info">
 
-                    <!-- 
-                    <div class="col-12 mb-4">
-                        <label class="form-label fw-bold">Course URL</label>
-                        <input type="url" class="form-control" placeholder="https://example.com/course">
-                    </div> -->
-<!-- 
-
-                <div class="mb-4">
-
-
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div #lessonContainer></div>
-                        </div>
-                    </div>
-
-
-
-                    <!-y
-                    - Lesson 1 -->
-<!-- </div> -->
-<!-- 
-                <div class="text-end">
-
-                    <button class="btn btn-success px-5" (click)="createCourse()">
-                        <i class="bi bi-check-circle me-2"></i>
-                        Create lesson
-                    </button>
-              @for (lesson of lessons; track $index) { -->
-
-<!-- <div class="lesson-card">
-
-    <h4>{{ lesson.title }}</h4>
-
-    <p>{{ lesson.lessonName }}</p>
-
-    <iframe
-      width="600"
-      height="315"
-      [src]="lesson.video"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
-
-    <hr>
-
-  </div>
-
-}
-            </div>
+          Loading your courses...
 
         </div>
 
-    </div> -->
+      }
 
-<div class="container mt-4">
-  <div class="card p-4">
-    <div class="col-md-6 mb-3">
-      <label>SELECT COURSE</label>
-      <select class="form-select" [(ngModel)]="selectedCourseId" name="course">
-        <option [ngValue]="null">Select Course</option>
+      <!-- Course Dropdown -->
 
-        <option *ngFor="let c of course" [ngValue]="c.id">{{ c.title }}</option>
-      </select>
+      @if (!loadingCourses) {
+
+        <select
+          class="form-select"
+          [(ngModel)]="course.courseId"
+          name="courseId"
+        >
+
+          <option [ngValue]="0">
+            -- Select Course --
+          </option>
+
+          @for (courseItem of courses; track courseItem.id) {
+
+            <option
+              [ngValue]="courseItem.id"
+            >
+
+              {{ courseItem.title }}
+
+            </option>
+
+          }
+
+        </select>
+
+      }
+
+      <!-- No Courses -->
+
+      @if (!loadingCourses && courses.length === 0) {
+
+        <small class="text-danger">
+
+          No courses found. Please create a course first.
+
+        </small>
+
+      }
+
     </div>
+
+
+    <!-- ======================================== -->
+    <!-- LESSON NAME -->
+    <!-- ======================================== -->
+
     <div class="mb-3">
-      <label class="form-label">Lesson Name</label>
+
+      <label class="form-label fw-bold">
+        Lesson Name
+      </label>
+
       <input
         type="text"
         class="form-control"
         [(ngModel)]="lessonName"
-        placeholder="Lesson Name"
+        placeholder="Enter lesson name"
+        name="lessonName"
       />
+
     </div>
 
+
+    <!-- ======================================== -->
+    <!-- VIDEO URL -->
+    <!-- ======================================== -->
+
     <div class="mb-3">
-      <label class="form-label">Video URL / iframe</label>
+
+      <label class="form-label fw-bold">
+        Video URL / YouTube Embed URL
+      </label>
+
       <input
         type="text"
         class="form-control"
         [(ngModel)]="videoUrl"
-        placeholder="Paste YouTube embed URL or iframe"
+        placeholder="Paste YouTube embed URL"
+        name="videoUrl"
       />
+
+      <small class="text-muted">
+
+        Example:
+        https://www.youtube.com/embed/VIDEO_ID
+
+      </small>
+
     </div>
 
-    <!-- IMPORTANT -->
-    <button class="btn btn-primary" (click)="addLesson()">Add Lesson</button>
 
-    <hr />
+    <!-- ======================================== -->
+    <!-- ADD LESSON BUTTON -->
+    <!-- ======================================== -->
 
-    <!-- Display Lessons -->
-    @for (lesson of lessons; track $index; let i = $index) {
-    <div class="card p-3 mb-4 shadow lesson-card" [id]="'lesson-' + i">
-      <div class="d-flex justify-content-between align-items-center">
-        <h4>{{ lesson.title }}</h4>
+    <div class="mb-4">
 
-        <div>
-          <button
-            class="btn btn-secondary btn-sm me-2"
-            (click)="previousLesson(i)"
-            [disabled]="i === 0"
-          >
-            Previous
-          </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addLesson()"
+      >
 
-          <button class="btn btn-danger btn-sm" (click)="deleteLesson(i)">
-            Delete
-          </button>
-        </div>
+        <i class="bi bi-plus-circle me-2"></i>
+
+        Add Lesson
+
+      </button>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ======================================== -->
+    <!-- TEMPORARY LESSON LIST -->
+    <!-- ======================================== -->
+
+    <h4 class="mb-3">
+
+      Added Lessons
+
+    </h4>
+
+
+    <!-- EMPTY MESSAGE -->
+
+    @if (lessons.length === 0) {
+
+      <div class="alert alert-secondary">
+
+        No lessons added yet.
+
       </div>
 
-      <h6>{{ lesson.lessonName }}</h6>
+    }
 
-      <iframe
-        width="100%"
-        height="350"
-        [src]="lesson.video"
-        frameborder="0"
-        allowfullscreen
+
+    <!-- LESSON LIST -->
+
+    @for (
+      lesson of lessons;
+      track $index;
+      let i = $index
+    ) {
+
+      <div
+        class="card p-3 mb-4 shadow-sm lesson-card"
       >
-      </iframe>
-    </div>
+
+        <!-- ================================== -->
+        <!-- LESSON HEADER -->
+        <!-- ================================== -->
+
+        <div
+          class="d-flex justify-content-between align-items-center mb-3"
+        >
+
+          <div>
+
+            <h4 class="mb-1">
+
+              Lesson {{ i + 1 }}
+
+            </h4>
+
+            <small class="text-muted">
+
+              {{ lesson.title }}
+
+            </small>
+
+          </div>
+
+
+          <!-- ================================== -->
+          <!-- ACTION BUTTONS -->
+          <!-- ================================== -->
+
+          <div>
+
+            <!-- PREVIOUS -->
+
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm me-2"
+              (click)="previousLesson(i)"
+              [disabled]="i === 0"
+            >
+
+              <i class="bi bi-arrow-up me-1"></i>
+
+              Previous
+
+            </button>
+
+
+            <!-- DELETE -->
+
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteLesson(i)"
+            >
+
+              <i class="bi bi-trash me-1"></i>
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- LESSON NAME -->
+        <!-- ================================== -->
+
+        <h6 class="fw-bold">
+
+          {{ lesson.lessonName }}
+
+        </h6>
+
+
+        <!-- ================================== -->
+        <!-- VIDEO -->
+        <!-- ================================== -->
+
+        <div class="ratio ratio-16x9">
+
+          <iframe
+            [src]="lesson.videoUrl"
+            title="Lesson Video"
+            allowfullscreen
+          >
+          </iframe>
+
+        </div>
+
+
+        <!-- ================================== -->
+        <!-- VIDEO URL -->
+        <!-- ================================== -->
+
+        <small class="text-muted mt-2">
+
+          Video URL:
+          {{ lesson.videoUrl }}
+
+        </small>
+
+      </div>
 
     }
-    <div class="text-end mt-4 mb-4">
-      <button class="btn btn-success px-4" (click)="createLessons()">
-        <i class="bi bi-check-circle me-2"></i>
-        Create Lessons
-      </button>
-    </div>
+
+
+    <!-- ======================================== -->
+    <!-- CREATE LESSONS BUTTON -->
+    <!-- ======================================== -->
+
+    @if (lessons.length > 0) {
+
+      <div class="text-end mt-4 mb-3">
+
+        <button
+          type="button"
+          class="btn btn-success px-5"
+          (click)="createLessons()"
+          [disabled]="creatingLessons"
+        >
+
+          @if (!creatingLessons) {
+
+            <i class="bi bi-check-circle me-2"></i>
+
+            Create Lessons
+
+          }
+
+          @if (creatingLessons) {
+
+            <span
+              class="spinner-border spinner-border-sm me-2"
+            >
+            </span>
+
+            Creating...
+
+          }
+
+        </button>
+
+      </div>
+
+    }
+
   </div>
+
 </div>
