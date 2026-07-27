@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import {
-  StudentDashboardService,
-} from '../../services/student.service';
+import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quizDto';
-import { QuizResult } from '../../models/quizResultDto';
+import { QuizResult } from '../../models/quizresult';
 
 @Component({
   selector: 'app-quiz',
@@ -18,43 +16,52 @@ import { QuizResult } from '../../models/quizResultDto';
 export class QuizComponent implements OnInit {
 
   lessonId!: number;
-
   quiz!: Quiz;
 
   answers: { [key: number]: string } = {};
-result: QuizResult = {
-  totalQuestions: 0,
-  correctAnswers: 0,
-  percentage: 0,
-  passed: false
-};
 
+  result!: QuizResult;
   submitted = false;
 
   constructor(
     private route: ActivatedRoute,
-    private service: StudentDashboardService
-  ) {}
+    private quizService: QuizService
+  ) {
+    console.log("QuizComponent Loaded");
+  }
 
   ngOnInit(): void {
 
-    this.lessonId = Number(
-      this.route.snapshot.paramMap.get('lessonId')
-    );
+    const id = this.route.snapshot.paramMap.get('lessonId');
 
-   this.service.getQuizzes(this.lessonId).subscribe({
-
-  next: (quizzes) => {
-
-    console.log("Quiz Response:", quizzes);
-
-    this.quiz = quizzes[0];
-
-    console.log("Questions:", this.quiz.questions);
+    if (id) {
+      this.lessonId = Number(id);
+      this.loadQuiz();
+    }
 
   }
 
-});
+  loadQuiz(): void {
+
+    this.quizService.getQuizzes(this.lessonId).subscribe({
+
+      next: (data) => {
+
+        console.log("Quiz:", data);
+
+        if (data.length > 0) {
+          this.quiz = data[0];
+        }
+
+      },
+
+      error: (err) => {
+
+        console.error("Quiz Error:", err);
+
+      }
+
+    });
 
   }
 
@@ -64,28 +71,30 @@ result: QuizResult = {
 
   }
 
-//   submitQuiz(): void {
+submitQuiz(): void {
 
-//     this.service.submitQuiz(
-//       this.quiz.id,
-//       this.answers
-//     ).subscribe({
+  console.log("Quiz ID:", this.quiz.id);
+  console.log("Answers:", this.answers);
 
-//    next: (res: QuizResult) => {
+  this.quizService.submitQuiz(this.quiz.id, this.answers).subscribe({
 
-//   this.result = res;
-//   this.submitted = true;
+    next: (data) => {
 
-// },
+      console.log("Quiz Result:", data);
 
-//       error: (err) => {
+      this.result = data;       // ✅ Save the response
+      this.submitted = true;    // ✅ Show the result card
 
-//         console.error(err);
+    },
 
-//       }
+    error: (err) => {
 
-//     });
+      console.error("Submit Error:", err);
 
-//   }
+    }
+
+  });
+
+}
 
 }

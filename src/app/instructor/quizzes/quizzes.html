@@ -1,8 +1,6 @@
 <div class="container mt-4">
 
-  <!-- Create Quiz Form -->
-
-  <div class="card shadow-lg">
+  <div class="card shadow">
 
     <div class="card-header bg-dark text-white">
       <h3>Create Quiz</h3>
@@ -11,62 +9,125 @@
     <div class="card-body">
 
       <div class="row">
-        
 
-        <div class="col-md-6 mb-3">
-          <label>Lesson</label>
-          <select class="form-select" [(ngModel)]="lesson">
-            <option value="">Select Lesson</option>
-            <option>Lesson 1</option>
-            <option>Lesson 2</option>
-            <option>Lesson 3</option>
-            <option>Lesson 4</option>
-            <option>Lesson 5</option>
+        <!-- Course -->
+        <div class="col-md-12 mb-3">
+
+          <label class="form-label">Course</label>
+
+          <select
+            class="form-select"
+            [(ngModel)]="selectedCourse"
+            (change)="onCourseChange()">
+
+            <option value="0">Select Course</option>
+
+            @for(course of courses; track course.id){
+
+            <option [value]="course.id">
+
+              {{course.title}}
+
+            </option>
+
+            }
+
           </select>
+
         </div>
 
+        <!-- Lesson -->
         <div class="col-md-6 mb-3">
-          <label>Question</label>
+
+          <label class="form-label">Lesson</label>
+
+          <select
+            class="form-select"
+            [(ngModel)]="selectedLesson">
+
+            <option value="0">
+
+              Select Lesson
+
+            </option>
+
+            @for(lesson of lessons; track lesson.id){
+
+            <option [value]="lesson.id">
+
+              {{lesson.title}}
+
+            </option>
+
+            }
+
+          </select>
+
+        </div>
+
+        <!-- Question -->
+        <div class="col-md-6 mb-3">
+
+          <label class="form-label">Question</label>
+
           <input
-            type="text"
             class="form-control"
             [(ngModel)]="question">
+
         </div>
 
+        <!-- Option A -->
         <div class="col-md-6 mb-3">
-          <label>Option A</label>
+
+          <label class="form-label">Option A</label>
+
           <input
-            type="text"
             class="form-control"
             [(ngModel)]="optionA">
+
         </div>
 
+        <!-- Option B -->
         <div class="col-md-6 mb-3">
-          <label>Option B</label>
+
+          <label class="form-label">Option B</label>
+
           <input
-            type="text"
             class="form-control"
             [(ngModel)]="optionB">
+
         </div>
 
+        <!-- Option C -->
         <div class="col-md-6 mb-3">
-          <label>Option C</label>
+
+          <label class="form-label">Option C</label>
+
           <input
-            type="text"
             class="form-control"
             [(ngModel)]="optionC">
+
         </div>
 
+        <!-- Option D -->
         <div class="col-md-6 mb-3">
-          <label>Option D</label>
+
+          <label class="form-label">Option D</label>
+
           <input
-            type="text"
             class="form-control"
             [(ngModel)]="optionD">
+
         </div>
 
-        <div class="col-md-6">
-          <label>Correct Answer</label>
+        <!-- Correct Answer -->
+        <div class="col-md-6 mb-3">
+
+          <label class="form-label">
+
+            Correct Answer
+
+          </label>
 
           <select
             class="form-select"
@@ -74,10 +135,13 @@
 
             <option value="">Choose</option>
 
-            <option>{{optionA}}</option>
-            <option>{{optionB}}</option>
-            <option>{{optionC}}</option>
-            <option>{{optionD}}</option>
+            <option [value]="optionA">{{optionA}}</option>
+
+            <option [value]="optionB">{{optionB}}</option>
+
+            <option [value]="optionC">{{optionC}}</option>
+
+            <option [value]="optionD">{{optionD}}</option>
 
           </select>
 
@@ -85,13 +149,23 @@
 
       </div>
 
-      <div class="text-end mt-4">
+      <div class="text-end">
 
         <button
-          class="btn btn-success"
+          type="button"
+          class="btn btn-primary me-2"
           (click)="addQuestion()">
 
-          Add Question
+          + Add Question
+
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="submitQuiz()">
+
+          Submit Quiz
 
         </button>
 
@@ -101,151 +175,71 @@
 
   </div>
 
-  <!-- Display Lessons -->
+  <!-- Added Questions -->
 
-  <div class="mt-5">
+  <div class="card mt-4 shadow" *ngIf="quizList.length>0">
 
-    @for (lessonItem of quizList; track lessonItem.lesson; let lessonIndex = $index) {
+    <div class="card-header bg-primary text-white">
 
-    <div class="card shadow mb-4">
+      <h4>Questions Added</h4>
 
-      <div class="card-header bg-dark text-white">
+    </div>
 
-        <h4 class="mb-0">
+    <div class="card-body">
 
-          {{lessonItem.lesson}}
+      @for(question of quizList; track $index; let i = $index){
 
-          <span class="badge bg-warning text-dark ms-2">
+      <div class="card mb-3">
 
-            {{lessonItem.questions.length}} Questions
+        <div class="card-body">
 
-          </span>
+         <h5>
 
-        </h4>
+Q{{i+1}}. {{question.questionText}}
 
-      </div>
+</h5>
 
-      <div class="card-body">
+          <p><b>A.</b> {{question.optionA}}</p>
 
-        @for (question of lessonItem.questions; track $index; let questionIndex = $index) {
+          <p><b>B.</b> {{question.optionB}}</p>
 
-        <div class="border rounded p-3 mb-3">
+          <p><b>C.</b> {{question.optionC}}</p>
 
-          <!-- VIEW MODE -->
-
-          @if(!question.editing){
-
-          <h5>
-            Q{{questionIndex+1}}. {{question.question}}
-          </h5>
-
-          <p>A. {{question.optionA}}</p>
-          <p>B. {{question.optionB}}</p>
-          <p>C. {{question.optionC}}</p>
-          <p>D. {{question.optionD}}</p>
+          <p><b>D.</b> {{question.optionD}}</p>
 
           <span class="badge bg-success">
 
-            ✔ {{question.answer}}
+          ✔ {{question.correctAnswer}}
 
           </span>
 
           <div class="text-end mt-3">
 
             <button
-  type="button"
-  class="btn btn-warning me-2"
-  (click)="editQuestion(lessonIndex, questionIndex)">
+              class="btn btn-warning btn-sm me-2"
+              (click)="editQuestion(i )">
 
-  ✏ Edit
+              Edit
 
-</button>
+            </button>
 
             <button
               class="btn btn-danger btn-sm"
-              (click)="deleteQuestion(lessonIndex,questionIndex)">
+              (click)="deleteQuestion(i)">
 
-              <i class="bi bi-trash"></i>
               Delete
 
             </button>
 
           </div>
 
-          }
-
-          <!-- EDIT MODE -->
-
-          @if(question.editing){
-
-          <label class="fw-bold">Question</label>
-
-          <input
-            class="form-control mb-2"
-            [(ngModel)]="question.question">
-
-          <label>Option A</label>
-
-          <input
-            class="form-control mb-2"
-            [(ngModel)]="question.optionA">
-
-          <label>Option B</label>
-
-          <input
-            class="form-control mb-2"
-            [(ngModel)]="question.optionB">
-
-          <label>Option C</label>
-
-          <input
-            class="form-control mb-2"
-            [(ngModel)]="question.optionC">
-
-          <label>Option D</label>
-
-          <input
-            class="form-control mb-3"
-            [(ngModel)]="question.optionD">
-
-          <label>Correct Answer</label>
-
-          <select
-            class="form-select mb-3"
-            [(ngModel)]="question.answer">
-
-            <option>{{question.optionA}}</option>
-            <option>{{question.optionB}}</option>
-            <option>{{question.optionC}}</option>
-            <option>{{question.optionD}}</option>
-
-          </select>
-
-          <div class="text-end">
-
-            <button
-              class="btn btn-success"
-              (click)="saveQuestion(lessonIndex,questionIndex)">
-
-              <i class="bi bi-check-circle"></i>
-
-              Save
-
-            </button>
-
-          </div>
-
-          }
-
         </div>
-
-        }
 
       </div>
 
-    </div>
+      }
 
-    }
+    </div>
 
   </div>
 

@@ -30,7 +30,7 @@ export class LessonService {
   getLessons(courseId: number): Observable<Lesson[]> {
 
     return this.http.get<Lesson[]>(
-      `${this.courseApiUrl}/getlesson/${courseId}`
+      `${this.lessonApiUrl}/getlesson/${courseId}`
     );
 
   }

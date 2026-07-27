@@ -45,6 +45,7 @@ export class LessonComponent implements OnInit {
     );
 
     this.loadLessons();
+    
   }
 
   loadLessons(): void {

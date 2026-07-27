@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { StudentDashboardService } from '../../services/student.service';
 import { StudentDashboardDTO } from '../../models/studentDashboardDto';
 import { Course } from '../../models/courseDto';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-student-dashboard',
   standalone: true,
@@ -14,7 +15,7 @@ import { Course } from '../../models/courseDto';
 export class StudentDashboard implements OnInit {
   dashboard: StudentDashboardDTO = {} as StudentDashboardDTO;
 
-  constructor(private StudentDashboardService: StudentDashboardService, private router: Router) {
+  constructor(private StudentDashboardService: StudentDashboardService, private router: Router,private http:HttpClient) {
      console.log("StudentDashboard component loaded");
    
   }
@@ -57,4 +58,28 @@ continueLearning(courseId: number): void {
   console.log("Course ID:", courseId);
     this.router.navigate(['/student/lesson', courseId]);
   }
+
+  //certificate
+// downloadCertificate(courseId: number) {
+
+//   console.log("Course ID:", courseId);
+
+//   this.http.get(
+//     `http://localhost:8081/api/certificate/download/${courseId}`,
+//     { responseType: 'blob' }
+//   ).subscribe(data => {
+
+//     const blob = new Blob([data], { type: 'application/pdf' });
+
+//     const url = window.URL.createObjectURL(blob);
+
+//     const a = document.createElement('a');
+
+//     a.href = url;
+//     a.download = 'certificate.pdf';
+//     a.click();
+
+//   });
+
+// }
 }

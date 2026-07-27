@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { InstructorService } from '../../services/Instructor.service';
 import { Course } from '../../models/courseDto';
 import { Lesson } from '../../models/lessonDto';
+import { DomSanitizer,SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-lesson',
@@ -38,6 +39,7 @@ export class CreateLessonComponent implements OnInit {
 
   lessonName: string = '';
   videoUrl: string = '';
+  description:string='';
 
   // ============================================
   // TEMPORARY LESSON LIST
@@ -57,7 +59,8 @@ export class CreateLessonComponent implements OnInit {
   // ============================================
 
   constructor(
-    private instructorService: InstructorService
+    private instructorService: InstructorService,
+    private sanitizer:DomSanitizer
   ) {}
 
   // ============================================
@@ -81,6 +84,12 @@ export class CreateLessonComponent implements OnInit {
     this.instructorService.getMyCourses().subscribe({
 
       next: (response: Course[]) => {
+        console.log("Lessons object:", this.lessons);
+
+console.log(
+  "JSON Sent:",
+  JSON.stringify(this.lessons, null, 2)
+);
 
         console.log('Courses received from backend:', response);
 
@@ -144,19 +153,16 @@ export class CreateLessonComponent implements OnInit {
     );
 
     // Create temporary lesson object
-    const newLesson: Lesson = {
+  const url = this.videoUrl.trim();
 
-      // This is needed by your HTML
-      title: selectedCourse?.title || 'Course Lesson',
-
-      lessonName: this.lessonName.trim(),
-
-      videoUrl: this.videoUrl.trim(),
-
-      // Course ID required by backend
-      courseId: this.course.courseId
-
-    };
+const newLesson: Lesson = {
+  title: this.lessonName.trim()||'Course Lesson',
+  videoUrl: url,
+  safeVideoUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
+  courseId: this.course.courseId,
+  description:this.description,
+   lessonOrder: this.lessons.length + 1
+};
 
     // Add lesson to list
     this.lessons.push(newLesson);

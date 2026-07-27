@@ -8,7 +8,7 @@ WELCOME BANNER
 
         <div class="col-lg-8">
 
-            <h2>👋 Welcome back, Dharshana</h2>
+            <h2>👋 Welcome back,{{username}}</h2>
 
             <p class="mt-3">
                 You have
@@ -50,7 +50,7 @@ STATISTICS
 
                 <h6>Total Courses</h6>
 
-                <h3>12</h3>
+                <h3>{{totalCourses}}</h3>
 
                 <small class="text-success">
                     <i class="bi bi-arrow-up"></i>
@@ -77,7 +77,7 @@ STATISTICS
 
                 <h6>Total Students</h6>
 
-                <h3>1,248</h3>
+                <h3>{{totalStudents}}</h3>
 
                 <small class="text-success">
                     <i class="bi bi-arrow-up"></i>
@@ -164,51 +164,15 @@ SECOND ROW
 
                 </thead>
 
-                <tbody>
-
-                    <tr>
-
-                        <td>Angular Masterclass</td>
-
-                        <td>420</td>
-
-                        <td>
-                            <span class="badge bg-success">
-                                Active
-                            </span>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Java Full Stack</td>
-
-                        <td>355</td>
-
-                        <td>
-                            <span class="badge bg-success">
-                                Active
-                            </span>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Spring Boot</td>
-
-                        <td>275</td>
-
-                        <td>
-                            <span class="badge bg-warning text-dark">
-                                Updating
-                            </span>
-                        </td>
-
-                    </tr>
-
-                </tbody>
+              <tbody>
+  <tr *ngFor="let course of courses">
+    <td>{{ course.title }}</td>
+    <td>{{ course.students }}</td>
+    <td>
+      <span class="badge bg-success">Active</span>
+    </td>
+  </tr>
+</tbody>
 
             </table>
 
@@ -234,8 +198,8 @@ SECOND ROW
   Start Live Class
 </button>
 
-<button class="btn btn-warning" routerLink="/instructor/quizzes">
-  Create Quiz
+<button class="btn btn-warning" routerLink="/instructor/create-course">
+  Create lesson
 </button>
 
 <button class="btn btn-dark" routerLink="/instructor/analytics">

@@ -27,22 +27,6 @@
                     {{course.description}}
                 </p>
 
-                <div class="stats">
-
-                    <span>{{course.progress}}%</span>
-
-                    <span>Completed</span>
-
-                </div>
-
-                <div class="progress">
-
-                    <div class="progress-fill"
-                        [style.width.%]="course.progress">
-                    </div>
-
-                </div>
-
                 <button
 class="continue-btn"
 (click)="continueLearning(course.courseId)">

@@ -8,4 +8,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './instructor.html',
   styleUrl: './instructor.css',
 })
-export class Instructor {}
+export class Instructor {
+    username: string = '';
+
+  ngOnInit(): void {
+    this.username = localStorage.getItem('username') || '';
+  }
+}

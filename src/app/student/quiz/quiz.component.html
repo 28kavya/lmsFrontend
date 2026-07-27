@@ -55,27 +55,21 @@ type="radio"
 
 </div>
 
-<!-- <button
-(click)="submitQuiz()">
+<button class="submit-btn" (click)="submitQuiz()">
+    Submit Quiz
+</button>
 
-Submit Quiz
+<div class="result-card" *ngIf="submitted && result">
+  <h2>Your Score: {{ result.percentage }}%</h2>
+  <p>Score: {{ result.score }} / {{ result.totalQuestions }}</p>
 
-</button> -->
+  <div class="pass" *ngIf="result.percentage >= 70">
+    🎉 Congratulations! You Passed.
+  </div>
 
-<h2>Your Score : {{ result.percentage }}%</h2>
-
-<div *ngIf="submitted && result">
-
-    <h2>Your Score : {{ result.percentage }}%</h2>
-
-    <div *ngIf="result.passed">
-        🎉 Congratulations! You Passed.
-    </div>
-
-    <div *ngIf="!result.passed">
-        ❌ You Failed. Watch the lesson again.
-    </div>
-
+  <div class="fail" *ngIf="result.percentage < 70">
+    ❌ You Failed. Watch the lesson again.
+  </div>
 </div>
 
 </div>

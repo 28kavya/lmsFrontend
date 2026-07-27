@@ -98,6 +98,15 @@
       />
 
     </div>
+    <div class="mb-3">
+    <label>Description</label>
+
+    <textarea
+        class="form-control"
+        [(ngModel)]="description"
+        rows="3">
+    </textarea>
+</div>
 
 
     <!-- ======================================== -->
@@ -271,12 +280,11 @@
 
         <div class="ratio ratio-16x9">
 
-          <iframe
-            [src]="lesson.videoUrl"
-            title="Lesson Video"
-            allowfullscreen
-          >
-          </iframe>
+         <iframe
+  [src]="lesson.safeVideoUrl"
+  title="Lesson Video"
+  allowfullscreen>
+</iframe>
 
         </div>
 

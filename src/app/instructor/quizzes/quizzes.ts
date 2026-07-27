@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Lesson } from '../../models/lessonDto';
+import { InstructorService } from '../../services/Instructor.service';
+import { Course } from '../../models/courseDto';
+import { LessonService } from '../../services/lesson.service';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-quiz',
@@ -10,6 +15,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./quizzes.css']
 })
 export class Quizzes {
+  courses: Course[] = [];
+lessons: Lesson[] = [];
+
+selectedCourse = 0;
+selectedLesson = 0;
 
   lesson = '';
   question = '';
@@ -22,97 +32,122 @@ export class Quizzes {
   correctAnswer = '';
 
   quizList: any[] = [];
+  constructor(private instrutorService:InstructorService,private lessonService:LessonService,private quizservice:QuizService){};
+  ngOnInit(){
+    this.loadCourses();
+  }
 
   addQuestion() {
 
-    if (
-      !this.lesson ||
-      !this.question ||
-      !this.optionA ||
-      !this.optionB ||
-      !this.optionC ||
-      !this.optionD ||
-      !this.correctAnswer
-    ) {
-      alert("Please fill all fields");
-      return;
-    }
+  const question = {
 
-    const newQuestion = {
+    questionText: this.question,
 
-      question: this.question,
+    optionA: this.optionA,
 
-      optionA: this.optionA,
-      optionB: this.optionB,
-      optionC: this.optionC,
-      optionD: this.optionD,
+    optionB: this.optionB,
 
-      answer: this.correctAnswer,
+    optionC: this.optionC,
 
-      editing: false
+    optionD: this.optionD,
 
-    };
+    correctAnswer: this.correctAnswer
 
-    const lessonExists = this.quizList.find(
-      x => x.lesson === this.lesson
-    );
+  };
 
-    if (lessonExists) {
+  this.quizList.push(question);
 
-      lessonExists.questions.push(newQuestion);
+  // Clear form
 
-    } else {
+  this.question = '';
+  this.optionA = '';
+  this.optionB = '';
+  this.optionC = '';
+  this.optionD = '';
+  this.correctAnswer = '';
 
-      this.quizList.push({
+  alert("Question Added");
+}
+  loadCourses() {
 
-        lesson: this.lesson,
+    this.instrutorService.getMyCourses().subscribe({
 
-        questions: [newQuestion]
+        next:(res)=>{
 
-      });
+            this.courses= res;
 
-    }
+        }
 
-    // Clear inputs
+    });
+  }
+onCourseChange() {
 
-    this.lesson = '';
-    this.question = '';
+    this.lessonService.getLessons(this.selectedCourse)
+        .subscribe({
 
-    this.optionA = '';
-    this.optionB = '';
-    this.optionC = '';
-    this.optionD = '';
+            next:(res)=>{
 
-    this.correctAnswer = '';
+                this.lessons = res;
 
+            }
+
+        });
+
+}
+submitQuiz() {
+
+  if (this.selectedLesson == 0) {
+    alert("Please select a lesson");
+    return;
   }
 
+  if (this.quizList.length === 0) {
+    alert("Please add at least one question");
+    return;
+  }
+
+  const quiz = {
+    questions: this.quizList
+  };
+
+  this.quizservice.addQuiz(this.selectedLesson, quiz)
+    .subscribe({
+
+      next: (res) => {
+
+        alert("✅ Quiz submitted successfully!");
+
+        this.quizList = [];
+
+      },
+
+      error: (err) => {
+
+        console.error(err);
+
+        alert("❌ Failed to submit quiz.");
+
+      }
+
+    });
+
+}
   // Delete Question
 
-  deleteQuestion(lessonIndex: number, questionIndex: number) {
+deleteQuestion(index: number) {
 
-    this.quizList[lessonIndex]
-      .questions
-      .splice(questionIndex, 1);
+  this.quizList.splice(index, 1);
 
-    // Remove lesson if no questions left
-    if (this.quizList[lessonIndex].questions.length === 0) {
-
-      this.quizList.splice(lessonIndex, 1);
-
-    }
-
-  }
+}
 
   // Edit Question
+editIndex: number = -1;
 
-  editQuestion(lessonIndex: number, questionIndex: number) {
+editQuestion(index: number) {
 
-    this.quizList[lessonIndex]
-      .questions[questionIndex]
-      .editing = true;
+  this.editIndex = index;
 
-  }
+}
 
   // Save Question
 

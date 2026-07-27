@@ -13,7 +13,7 @@ import { CourseService } from '../../services/course.service';
 })
 export class ExploreCoursesComponent implements OnInit {
 
-  courses: Course[] = [];
+courses: Course[] = [];
 
   constructor(private studentDashboardService: StudentDashboardService,private courseService:CourseService ) {}
 

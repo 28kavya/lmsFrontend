@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { InstructorService } from '../../services/Instructor.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,33 @@ import { RouterModule } from '@angular/router';
   styleUrl: './dashboard.css'
 })
 export class InstructorDashboard {
+  username:String=''
+  totalCourses:number=0;
+  totalStudents:number=0;
+  courses: any[] = [];
 
+  constructor(private instructorService:InstructorService){}
+ 
+  ngOnInit(): void {
+    this.username = localStorage.getItem('username') || '';
+    this.loadCourses();
+  }
+ loadCourses() {
+    this.instructorService.getMyCourses().subscribe({
+      next: (courses: any[]) => {
+
+        console.log(courses);
+
+        this.totalCourses = courses.length;
+        this.courses=courses;
+
+        this.totalStudents = courses.reduce(
+          (sum, course) => sum + (course.students || 0),
+          0
+        );
+      }
+    });
+  }
   // =========================
   // Dashboard Statistics
   // =========================
