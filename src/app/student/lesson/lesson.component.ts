@@ -89,6 +89,20 @@ markCompleted(): void {
     return;
   }
 
+  // Show the quiz button
+  this.quizUnlocked = true;
+  alert("Lesson caompleted");
+  this.lessonService.completeLesson(this.selectedLesson.id!).subscribe({
+      next: (res) => {
+      console.log("Video completed:", res);
+      this.quizUnlocked = true;
+    },
+    error: (err) => {
+      console.error("completeLesson failed", err);
+    }
+  }
+  );
+
 }
  completeCurrentLesson(): void {
 
