@@ -8,6 +8,7 @@ import {
 } from '../../services/student.service';
 import { LessonService } from '../../services/lesson.service';
 import { Lesson } from '../../models/lessonDto';
+import { ProgressService } from '../../services/progress.service';
 
 @Component({
   selector: 'app-lesson',
@@ -35,7 +36,8 @@ export class LessonComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private studentDashboardService: StudentDashboardService,
-    private lessonService:LessonService
+    private lessonService:LessonService,
+    private progressService:ProgressService
   ) {}
 
   ngOnInit(): void {
@@ -86,24 +88,16 @@ export class LessonComponent implements OnInit {
 markCompleted(): void {
 
   if (!this.selectedLesson) {
+    console.error('No lesson selected');
     return;
   }
 
   // Show the quiz button
   this.quizUnlocked = true;
-  alert("Lesson caompleted");
-  this.lessonService.completeLesson(this.selectedLesson.id!).subscribe({
-      next: (res) => {
-      console.log("Video completed:", res);
-      this.quizUnlocked = true;
-    },
-    error: (err) => {
-      console.error("completeLesson failed", err);
-    }
-  }
-  );
-
+  alert('Lesson marked as completed!');
+  this.progressService.addProgress(this.selectedLesson.id!).subscribe();
 }
+
  completeCurrentLesson(): void {
 
   // Make sure a lesson is selected

@@ -5,6 +5,7 @@ import { StudentDashboardService } from '../../services/student.service';
 import { StudentDashboardDTO } from '../../models/studentDashboardDto';
 import { Course } from '../../models/courseDto';
 import { HttpClient } from '@angular/common/http';
+import { InstructorStudent } from '../../models/instructor-student';
 @Component({
   selector: 'app-student-dashboard',
   standalone: true,
@@ -58,7 +59,6 @@ continueLearning(courseId: number): void {
   console.log("Course ID:", courseId);
     this.router.navigate(['/student/lesson', courseId]);
   }
-
   //certificate
 // downloadCertificate(courseId: number) {
 
