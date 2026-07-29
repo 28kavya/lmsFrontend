@@ -29,22 +29,27 @@ export class QuizService {
 
 }
 
-submitQuiz(quizId: number, answers: any) {
+submitQuiz(
+  quizId: number,
+  answers: { [key: string]: string }
+) {
+  const answerList = Object.entries(answers).map(
+    ([questionId, selectedAnswer]) => ({
+      questionId: Number(questionId),
+      selectedAnswer: selectedAnswer
+    })
+  );
 
   const request = {
     quizId: quizId,
-    answers: Object.keys(answers).map(key => ({
-      questionId: Number(key),
-      selectedAnswer: answers[key]
-    }))
+    answers: answerList
   };
 
-  console.log(request);
+  console.log('Final request:', request);
 
   return this.http.post<QuizResult>(
-    `${environment.apiUrl}/quizsanswer/submit`,
+    'http://localhost:8081/api/quizsanswer/submit',
     request
   );
 }
-
 }

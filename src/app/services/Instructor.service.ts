@@ -3,6 +3,8 @@ import { environment } from '../environment';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/courseDto';
 import { Lesson } from '../models/lessonDto';
+
+import { InstructorStudent } from '../models/instructor-student';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +25,11 @@ export class InstructorService {
     return this.http.post(`${this.api}/lesson/create`,data);
 
   }
+
+  getStudents() {
+  return this.http.get<InstructorStudent[]>(
+    "http://localhost:8081/api/instructor/students"
+  );
+}
 
 }

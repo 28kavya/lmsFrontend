@@ -20,52 +20,7 @@
 
     </div>
 
-    <!-- Statistics Card -->
-
-    <div class="card shadow border-0 mb-4">
-
-        <div class="card-body">
-
-            <div class="row text-center">
-
-                <div class="col-md-3 border-end">
-
-                    <h3>{{students.length}}</h3>
-
-                    <p>Total Students</p>
-
-                </div>
-
-                <div class="col-md-3 border-end">
-
-                    <h3>2</h3>
-
-                    <p>Active</p>
-
-                </div>
-
-                <div class="col-md-3 border-end">
-
-                    <h3>1</h3>
-
-                    <p>Completed</p>
-
-                </div>
-
-                <div class="col-md-3">
-
-                    <h3>1</h3>
-
-                    <p>New Students</p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+    
     <!-- Student Table -->
 
    <div class="card-header text-white" style="background-color: #e27107;">
@@ -84,21 +39,24 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Course</th>
-                        <th>Progress</th>
                         <th>Status</th>
 
                     </tr>
 
                 </thead>
 <tbody>
-  @for (student of filteredStudents; track $index) {
-    <tr>
-      <td>{{ student.name }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.course }}</td>
-      <td>{{ student.progress }}</td>
-      <td>{{ student.status }}</td>
-    </tr>
-  }
+
+<tr *ngFor="let student of filteredStudents">
+
+    <td>{{student.name}}</td>
+
+    <td>{{student.email}}</td>
+
+    <td>{{student.course}}</td>
+
+    <td>{{student.status}}</td>
+
+</tr>
+
 </tbody>
 </table>

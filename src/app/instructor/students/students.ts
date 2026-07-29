@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { InstructorStudent } from '../../models/instructor-student';
+import { InstructorService } from '../../services/Instructor.service';
 @Component({
   selector: 'app-students',
   standalone: true,
@@ -10,39 +11,28 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./students.css']
 })
 export class Students {
-
-  students = [
-    {
-      name: 'John',
-      email: 'john@gmail.com',
-      course: 'Angular',
-      progress: '80%',
-      status: 'Active'
-    },
-    {
-      name: 'Emma',
-      email: 'emma@gmail.com',
-      course: 'Java',
-      progress: '100%',
-      status: 'Completed'
-    },
-    {
-      name: 'David',
-      email: 'david@gmail.com',
-      course: 'Python',
-      progress: '45%',
-      status: 'Active'
-    },
-    {
-      name: 'Sophia',
-      email: 'sophia@gmail.com',
-      course: 'React',
-      progress: '20%',
-      status: 'New Student'
-    }
-  ];
+students: InstructorStudent[] = [];
 
   filteredStudents = [...this.students];
+constructor(private service: InstructorService) {}
+
+ngOnInit(){
+
+  this.service.getStudents().subscribe({
+
+  next: (res: InstructorStudent[]) => {
+
+  this.students = res;
+  this.filteredStudents = res;   // <-- IMPORTANT
+  console.log(res);
+
+}
+
+  });
+
+}
+  
+
 searchText = '';
 
   searchStudent() {
@@ -52,5 +42,6 @@ searchText = '';
   );
 
   }
+  
 
 }
