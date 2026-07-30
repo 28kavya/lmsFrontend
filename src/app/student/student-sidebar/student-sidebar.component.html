@@ -41,16 +41,7 @@
 
         </li>
 
-        <li routerLink="/student/progress"
-            routerLinkActive="active">
-
-            <i class="bi bi-bar-chart-fill"></i>
-
-            <span>My Progress</span>
-
-        </li>
-
-        <li routerLink="/student/quizzes"
+        <li routerLink="/student/quiz/:lessonId"
             routerLinkActive="active">
 
             <i class="bi bi-patch-question-fill"></i>
@@ -76,7 +67,11 @@
             <span>Settings</span>
 
         </li>
-
+        <li>
+            <i class="logout-btn bi bi-box-arrow-right" (click)="loginService.logout()">
+                <span>Logout</span>
+            </i>
+        </li>
     </ul>
 
 </div>

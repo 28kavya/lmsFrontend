@@ -4,6 +4,7 @@ export interface Quiz {
 
   id: number;
   title: string;
+  quizTitle:string;
   questions: Question[];
 
 }

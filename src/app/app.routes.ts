@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { StudentLayout } from './student/student-layout/student-layout.component';
+import { StudentLayout } from './student/student-layout.component';
 import { StudentDashboard } from './student/dashboard/dashboard.component';
 import { ExploreCoursesComponent } from './student/explore-courses/explore-courses.component';
 import { MyCoursesComponent } from './student/my-courses/my-courses.component';
@@ -27,180 +27,7 @@ import { AddCourse } from './admin/courses/add-course/add-course';
 import { AddInstructor } from './admin/instructors/add-instructor/add-instructor';
 import { EditCourseComponent } from './admin/courses/edit-course/edit-course';
 import { Students } from './instructor/students/students';
-
-// export const routes: Routes = [
-//     { path: '', component: LandingComponent },
-
-//   { path: 'login', component: LoginComponent
-//    },
-
-//   { path: 'register', component: RegisterComponent },
-// //     {
-// // path:'student',
-
-// // component:StudentLayout,
-
-// // children:[
-
-// // {
-// // path:'dashboard',
-// // component:StudentDashboard
-// // },
-
-// // {
-// // path:'explore-courses',
-// // component:ExploreCoursesComponent
-// // },
-
-// // {
-// // path:'my-courses',
-// // component:MyCoursesComponent
-// // },
-// // {
-// //   path: 'lesson/:courseId',
-// //   component: LessonComponent
-// // },
-// // {
-// //    path:'quiz/:lessonId',
-// //    component: QuizComponent
-// // },
-// // {
-// // path:'',
-// // redirectTo:'dashboard',
-// // pathMatch:'full'
-// // }]
-// //     }
-// // {
-// //   path: 'admin',
-// //   component: AdminLayout,
-// //   children: [
-
-// //     {
-// //       path: 'dashboard',
-// //       component: Dashboard
-// //     },
-
-// //     // ================= Courses =================
-
-// //     {
-// //       path: 'courses',
-// //       component: Courses
-// //     },
-
-// //     {
-// //       path: 'courses/add',
-// //       loadComponent: () =>
-// //         import('./admin/courses/add-course/add-course')
-// //           .then(m => m.AddCourse)
-// //     },
-
-// //     {
-// //       path: 'courses/edit',
-// //       loadComponent: () =>
-// //         import('./admin/courses/edit-course/edit-course')
-// //           .then(m => m.EditCourse)
-// //     },
-
-// //     // ================= Students =================
-
-// //     {
-// //       path: 'students',
-// //       component: Students
-// //     },
-
-// //     {
-// //       path: 'students/add',
-// //       loadComponent: () =>
-// //         import('./admin/students/add-student/add-student')
-// //           .then(m => m.AddStudent)
-// //     },
-
-// //     {
-// //       path: 'students/edit/:id',
-// //       loadComponent: () =>
-// //         import('./admin/students/edit-student/edit-student')
-// //           .then(m => m.EditStudent)
-// //     },
-
-// //     // ================= Instructors =================
-
-// //     {
-// //       path: 'instructors',
-// //       component: Instructors
-// //     },
-
-// //     {
-// //       path: 'instructors/add',
-// //       loadComponent: () =>
-// //         import('./admin/instructors/add-instructor/add-instructor')
-// //           .then(m => m.AddInstructor)
-// //     },
-
-// //     {
-// //       path: 'instructors/edit/:id',
-// //       loadComponent: () =>
-// //         import('./admin/instructors/edit-instructor/edit-instructor')
-// //           .then(m => m.EditInstructor)
-// //     },
-
-// //     // ================= Settings =================
-
-// //     {
-// //       path: 'settings',
-// //       component: Settings
-// //     }
-
-// //   ]
-// // }
-
-//   {
-//     path: 'instructor',
-//     component: Instructor,
-//     children: [
-//       {
-//         path: '', component: InstructorDashboard
-//       },
-//       {
-//         path: 'dashboard',
-//         component: InstructorDashboard
-//       },
-//        {
-//         path: 'quizzesdir',
-//         component: Quizzes
-//       },
-//       {
-//         path: 'create-course',
-//         component: LessonsComponent
-//       },
-//       {
-//         path: 'students',
-//         component: Students
-//       },
-//        {
-//         path: 'quizzes',
-//         component: Quizzes
-//       },
-    
-//        {
-//         path: 'analytics',
-//         component:Analytics
-//       },
-//       {
-//         path: 'settings',
-//         component:Settings
-//       },
-//       {
-//         path: 'quiz',
-//         component: Quizzes
-//       },
-//     ]
-//   },
-//   // Optional - any unknown URL goes to login
-//   {
-//     path: '**',
-//     redirectTo: 'login'
-//   }
-// ];
+import { CertificatesComponent } from './student/certificate/certificate.component';
 
 export const routes: Routes = [
 
@@ -220,6 +47,7 @@ export const routes: Routes = [
       { path: 'my-courses', component: MyCoursesComponent },
       { path: 'lesson/:courseId', component: LessonComponent },
       { path: 'quiz/:lessonId', component: QuizComponent },
+      {path:'certificates',component:CertificatesComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

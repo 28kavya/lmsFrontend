@@ -211,33 +211,19 @@ height:620px;
 }
 
 .circle{
-
-position:absolute;
-
-width:470px;
-
-height:470px;
-
-background:linear-gradient(180deg,#7b6cff,#5038ff);
-
-border-radius:50%;
-
-box-shadow:0 0 90px rgba(105,92,255,.55);
-
+    position:absolute;
+    width:470px;
+    height:470px;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 0 90px rgba(105,92,255,.55);
+    background:linear-gradient(180deg,#7b6cff,#5038ff);
 }
 
 .student-img{
-
-position:absolute;
-
-width:420px;
-
-z-index:3;
-
-bottom:0;
-
-animation:float 4s ease-in-out infinite;
-
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* Floating Cards */

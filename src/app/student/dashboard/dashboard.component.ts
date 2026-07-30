@@ -20,7 +20,7 @@ export class StudentDashboard implements OnInit {
      console.log("StudentDashboard component loaded");
    
   }
-  courses: Course[] = [];
+  courses: any = [];
 
   ngOnInit(): void {
 
@@ -59,27 +59,5 @@ continueLearning(courseId: number): void {
   console.log("Course ID:", courseId);
     this.router.navigate(['/student/lesson', courseId]);
   }
-  //certificate
-// downloadCertificate(courseId: number) {
 
-//   console.log("Course ID:", courseId);
-
-//   this.http.get(
-//     `http://localhost:8081/api/certificate/download/${courseId}`,
-//     { responseType: 'blob' }
-//   ).subscribe(data => {
-
-//     const blob = new Blob([data], { type: 'application/pdf' });
-
-//     const url = window.URL.createObjectURL(blob);
-
-//     const a = document.createElement('a');
-
-//     a.href = url;
-//     a.download = 'certificate.pdf';
-//     a.click();
-
-//   });
-
-// }
 }

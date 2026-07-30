@@ -61,9 +61,6 @@
     <td>
 
         <div class="student-info">
-
-            <img src="assets/profile.png" alt="Student">
-
             <div>
 
                 <h6>{{student.name}}</h6>
@@ -92,7 +89,7 @@
 
         <span class="status active">
 
-            {{student.enrollments[0].status}}
+            {{student.enrollments[0]?.status||'-'}}
 
         </span>
 

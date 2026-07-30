@@ -13,57 +13,50 @@
 
             <ul class="menu">
 
-                <li>
-                    <a
+                <li
+                   
                         routerLink="/instructor/dashboard"
                         routerLinkActive="active-link">
                         <i class="bi bi-grid-fill"></i>
                         Dashboard
-                    </a>
+                 
                 </li>
 
-                <li>
-                    <a
+                <li
+         
                         routerLink="/instructor/create-course"
                         routerLinkActive="active-link">
                         <i class="bi bi-journal-bookmark-fill"></i>
                         Create Lessons
-                    </a>
                 </li>
 
-                <li>
-                    <a
+                <li
                         routerLink="/instructor/students"
                         routerLinkActive="active-link">
                         <i class="bi bi-people-fill"></i>
                         Students
-                    </a>
+
                 </li>
 
-                <li>
-                    <a
+                <li
                         routerLink="/instructor/quizzes"
                         routerLinkActive="active-link">
                         <i class="bi bi-file-earmark-text-fill"></i>
                         Quizzes
-                    </a>
                 </li>
-
-                
-
-                
-        
-
                  
-                <li>
-                    <a
+                <li
+                    
                         routerLink="/instructor/settings"
                         routerLinkActive="active-link">
                         <i class="bi bi-gear-fill"></i>
                         Settings
-                    </a>
                 </li>
-
+                <li
+                class="logout-btn" (click)="loginService.logout()">
+  <i class="bi bi-box-arrow-right"></i>
+  Logout
+</li>
             </ul>
 
         </div>

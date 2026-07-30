@@ -113,33 +113,6 @@ markCompleted(): void {
   }
 }
 
-  // Now TypeScript knows id is definitely a number
-//   this.lessonService
-//     .completeLesson(this.selectedLesson.id)
-//     .subscribe({
-
-//       next: (response) => {
-
-//         console.log(
-//           'Lesson completed successfully:',
-//           response
-//         );
-
-//       },
-
-//       error: (error) => {
-
-//         console.error(
-//           'Error completing lesson:',
-//           error
-//         );
-
-//       }
-
-//     });
-
-// }
-
  startQuiz() {
 
   this.router.navigate([

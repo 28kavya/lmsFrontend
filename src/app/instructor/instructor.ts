@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-instructor',
@@ -10,6 +11,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class Instructor {
     username: string = '';
+    constructor(public loginService:LoginService){}
 
   ngOnInit(): void {
     this.username = localStorage.getItem('username') || '';

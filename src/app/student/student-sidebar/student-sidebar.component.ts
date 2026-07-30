@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -10,5 +11,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './student-sidebar.component.css'
 })
 export class StudentSidebar {
+  constructor(public loginService:LoginService){}
 
 }

@@ -1,0 +1,38 @@
+<div class="container mt-4">
+
+    <div class="card shadow mb-3"
+         *ngFor="let certificate of certificates">
+
+        <div class="card-body">
+
+            <h4>{{certificate.courseTitle}}</h4>
+
+            <p>
+
+                <strong>Certificate No:</strong>
+
+                {{certificate.certificateNumber}}
+
+            </p>
+
+            <p>
+
+                <strong>Issued Date:</strong>
+
+                {{certificate.issuedDate}}
+
+            </p>
+
+            <button
+                    class="btn btn-success"
+                    (click)="download(certificate.courseId)">
+
+                Download Certificate
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

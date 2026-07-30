@@ -19,6 +19,7 @@ export class Quizzes {
 lessons: Lesson[] = [];
 
 selectedCourse = 0;
+quizTitle='';
 selectedLesson = 0;
 
   lesson = '';
@@ -101,34 +102,35 @@ submitQuiz() {
     return;
   }
 
+  if (!this.quizTitle.trim()) {
+    alert("Please enter quiz title");
+    return;
+  }
+
   if (this.quizList.length === 0) {
     alert("Please add at least one question");
     return;
   }
 
   const quiz = {
+    title: this.quizTitle,
     questions: this.quizList
   };
 
+  console.log("Quiz Payload:", quiz);
+
   this.quizservice.addQuiz(this.selectedLesson, quiz)
     .subscribe({
-
       next: (res) => {
+        alert("Quiz submitted successfully!");
 
-        alert("✅ Quiz submitted successfully!");
-
+        this.quizTitle = "";
         this.quizList = [];
-
       },
 
       error: (err) => {
-
         console.error(err);
-
-        alert("❌ Failed to submit quiz.");
-
       }
-
     });
 
 }
