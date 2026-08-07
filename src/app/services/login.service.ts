@@ -13,6 +13,8 @@ export class LoginService {
    private apiUrl = environment.apiUrl + '/auth';
 
   constructor(private http: HttpClient,private router:Router) { }
+
+  
   login(loginData: LoginRequest){
     return this.http.post<LoginResponse>(
         `${this.apiUrl}/login`,

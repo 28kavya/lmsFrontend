@@ -40,27 +40,6 @@ export class Instructors {
 
    });
   }
-  //   get filteredInstructors() {
-
-  //   return this.instructors.filter(instructor =>
-
-  //     instructor.name
-  //       .toLowerCase()
-  //       .includes(this.searchText.toLowerCase()) ||
-
-  //     instructor.email
-  //       .toLowerCase()
-  //       .includes(this.searchText.toLowerCase()) ||
-
-  //     instructor.department
-  //       .toLowerCase()
-  //       .includes(this.searchText.toLowerCase())
-
-  //   );
-
-  // }
-
-
   addInstructor() {
 
     this.router.navigate(['/admin/instructors/add']);
@@ -85,11 +64,12 @@ export class Instructors {
 
     if (confirmDelete) {
 
-      this.instructors = this.instructors.filter(
-        instructor => instructor.id !== id
-      );
-
-      alert('Instructor deleted successfully!');
+      this.adminService.deleteInstructor(id).subscribe({
+        next: () => {
+          alert('Instructor deleted successfully!');
+          this.loadInstructors();
+        }
+      });
 
     }
 

@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing/landing.component';
 import { LessonComponent } from './student/lesson/lesson.component';
-import { QuizComponent } from './student/quiz/quiz.component';
 import { AdminLayout } from './admin/admin-layout/admin-layout';
 
 import { Courses } from './admin/courses/courses';
@@ -46,7 +45,6 @@ export const routes: Routes = [
       { path: 'explore-courses', component: ExploreCoursesComponent },
       { path: 'my-courses', component: MyCoursesComponent },
       { path: 'lesson/:courseId', component: LessonComponent },
-      { path: 'quiz/:lessonId', component: QuizComponent },
       {path:'certificates',component:CertificatesComponent},
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
